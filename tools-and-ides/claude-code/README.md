@@ -73,11 +73,11 @@ export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"
 | | Third-party relay (e.g. OneFun) | Official relay (e.g. NuwaAPI) |
 |---|---|---|
 | **Price** | Cheaper | More expensive (official Anthropic pricing) |
-| **Model guarantee** | May silently downgrade | Guaranteed official model |
-| **Network** | May need VPN | No VPN needed (relay handles routing) |
-| **Reliability** | Varies | Stable (official forwarding) |
+| **Model guarantee** | Some may silently downgrade | Guaranteed official model |
+| **Network** | No VPN needed | No VPN needed |
+| **Reliability** | Varies (OneFun verified reliable so far) | Stable (official forwarding) |
 
-Pick based on your budget and trust level. For important work, prefer official relay.
+Pick based on your budget and trust level. OneFun has been verified and works well so far; for mission-critical work, official relay gives extra peace of mind.
 
 ### How to Verify You're Using Opus
 
@@ -182,11 +182,11 @@ export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"
 | | 第三方中转（如 OneFun） | 官方转发（如 NuwaAPI） |
 |---|---|---|
 | **价格** | 便宜 | 较贵（按 Anthropic 官方定价） |
-| **模型保障** | 可能偷偷降级 | 保证官方模型 |
-| **网络环境** | 可能需要 VPN | 无需 VPN（转发服务处理路由） |
-| **稳定性** | 参差不齐 | 稳定（官方转发） |
+| **模型保障** | 部分可能偷偷降级 | 保证官方模型 |
+| **网络环境** | 无需 VPN | 无需 VPN |
+| **稳定性** | 因站而异（OneFun 经验证目前靠谱） | 稳定（官方转发） |
 
-根据预算和信任度选择。重要工作建议用官方转发。
+根据预算和信任度选择。OneFun 已经过验证，目前使用稳定；如果是关键任务，官方转发更让人放心。
 
 ### 如何验证你用的确实是 Opus
 
