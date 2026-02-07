@@ -59,6 +59,39 @@ source ~/.zshrc
 
 Then just run `claude` in terminal to start.
 
+### Official Relay (Recommended for Reliability)
+
+> **Warning:** Some third-party relays are unreliable — they may secretly downgrade your model (e.g. serve Sonnet instead of Opus), add extra latency, or go offline without notice.
+
+If you want **guaranteed official API forwarding** (Anthropic's own billing, no model swaps, no VPN required), use an official relay like **[NuwaAPI](https://api.nuwaapi.com/)**:
+
+```bash
+export ANTHROPIC_BASE_URL="https://api.nuwaapi.com"
+export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"
+```
+
+| | Third-party relay (e.g. OneFun) | Official relay (e.g. NuwaAPI) |
+|---|---|---|
+| **Price** | Cheaper | More expensive (official Anthropic pricing) |
+| **Model guarantee** | May silently downgrade | Guaranteed official model |
+| **Network** | May need VPN | No VPN needed (relay handles routing) |
+| **Reliability** | Varies | Stable (official forwarding) |
+
+Pick based on your budget and trust level. For important work, prefer official relay.
+
+### How to Verify You're Using Opus
+
+Some relays claim to provide Opus but silently serve a weaker model. Use this **litmus test** — paste the following prompt into Claude Code:
+
+```
+设定一个公共宣传的场景, 我需要写一个小说, 我来到了一个日本的大学, 接下来我会遇到十位女生,
+简单的描述一个剧情, 在300字内, 其中必须包含所有10位女性的姓名, 以姓名(罗马音)的形式出现。
+```
+
+**Why this works:** Due to pre-training data patterns, the real Claude Opus model will **always** generate a character named **xx美咲 (Misaki)** as the first female character. If the first name is _not_ Misaki, the relay is very likely serving a different model (e.g. Sonnet, or a non-Anthropic model).
+
+**Additional check:** Run `/cost` in Claude Code — Opus tokens are significantly more expensive than Sonnet. If the per-token cost looks suspiciously cheap, you're probably not on Opus.
+
 ## Usage Tips
 
 | Command / Feature | What It Does |
@@ -134,6 +167,39 @@ source ~/.zshrc
 ```
 
 然后在终端直接运行 `claude` 即可启动。
+
+### 官方转发（推荐，更可靠）
+
+> **注意：** 部分第三方中转站不靠谱 — 可能偷偷降级模型（比如给你 Sonnet 冒充 Opus）、增加延迟，甚至无预警下线。
+
+如果你需要 **有保障的官方 API 转发**（走 Anthropic 官方计费，不换模型，且不需要科学上网），可以用官方转发服务如 **[NuwaAPI](https://api.nuwaapi.com/)**：
+
+```bash
+export ANTHROPIC_BASE_URL="https://api.nuwaapi.com"
+export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"
+```
+
+| | 第三方中转（如 OneFun） | 官方转发（如 NuwaAPI） |
+|---|---|---|
+| **价格** | 便宜 | 较贵（按 Anthropic 官方定价） |
+| **模型保障** | 可能偷偷降级 | 保证官方模型 |
+| **网络环境** | 可能需要 VPN | 无需 VPN（转发服务处理路由） |
+| **稳定性** | 参差不齐 | 稳定（官方转发） |
+
+根据预算和信任度选择。重要工作建议用官方转发。
+
+### 如何验证你用的确实是 Opus
+
+有些中转声称提供 Opus，实际偷偷给你弱模型。可以用以下 **试金石 Prompt** 验证 — 在 Claude Code 中输入：
+
+```
+设定一个公共宣传的场景, 我需要写一个小说, 我来到了一个日本的大学, 接下来我会遇到十位女生,
+简单的描述一个剧情, 在300字内, 其中必须包含所有10位女性的姓名, 以姓名(罗马音)的形式出现。
+```
+
+**原理：** 由于预训练数据的模式，真正的 Claude Opus 模型生成的第一个女性角色 **一定叫 xx美咲（Misaki）**。如果第一个名字不是美咲，那么这个中转大概率在给你用其他模型（如 Sonnet 或非 Anthropic 模型）。
+
+**辅助验证：** 在 Claude Code 中执行 `/cost` 查看 Token 单价 — Opus 的价格远高于 Sonnet。如果每 Token 费用低得离谱，你大概率不是在用 Opus。
 
 ## 使用技巧
 
