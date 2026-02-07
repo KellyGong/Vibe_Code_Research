@@ -117,9 +117,30 @@ Uses a "follow the trail" strategy:
 | File | Description |
 |------|-------------|
 | `README.md` | This documentation |
+| `SKILL.md` | Complete Cursor Skill definition (agent prompts, check details, output format) |
 | `checklist_template.md` | Standalone review checklist template |
 
-> **Note**: The Cursor Skill definition lives at `~/.cursor/skills/paper-review/SKILL.md` and is loaded automatically by Cursor IDE.
+### Install as Cursor Skill
+
+To enable the automatic review workflow in Cursor IDE, copy (or symlink) the skill folder to your Cursor skills directory:
+
+```bash
+# Option A: Symlink (recommended — stays in sync)
+ln -s "$(pwd)" ~/.cursor/skills/paper-review
+
+# Option B: Copy
+cp -r . ~/.cursor/skills/paper-review
+```
+
+Once installed, just ask Cursor:
+```
+Please review the paper at /path/to/paper.pdf, target venue is ACL 2026
+```
+
+The `SKILL.md` file contains the full agent orchestration logic:
+- **10 check modules** with detailed check points and output table formats
+- **4 sub-agent prompt templates** (generic, citation, related work, code review)
+- **8 operational notes** (parallelism, false positive handling, anonymization, etc.)
 
 </details>
 
@@ -229,8 +250,29 @@ Cursor 会自动：
 | 文件 | 说明 |
 |------|------|
 | `README.md` | 本文档 |
+| `SKILL.md` | 完整的 Cursor Skill 定义（代理 prompt、检查细节、输出格式） |
 | `checklist_template.md` | 独立审稿检查清单模板 |
 
-> **注意**：Cursor Skill 定义文件位于 `~/.cursor/skills/paper-review/SKILL.md`，Cursor IDE 会自动加载。
+### 安装为 Cursor Skill
+
+将本文件夹复制（或软链接）到 Cursor 的 skills 目录即可启用自动审稿：
+
+```bash
+# 方式A：软链接（推荐 — 自动保持同步）
+ln -s "$(pwd)" ~/.cursor/skills/paper-review
+
+# 方式B：复制
+cp -r . ~/.cursor/skills/paper-review
+```
+
+安装后，直接在 Cursor 中对话即可使用：
+```
+请审查论文 /path/to/paper.pdf，目标会议是 ACL 2026
+```
+
+`SKILL.md` 包含完整的代理编排逻辑：
+- **10 个检查模块**的详细检查要点和输出表格格式
+- **4 个子代理 Prompt 模板**（通用、引用核验、相关工作、代码仓库）
+- **8 条实操注意事项**（并行策略、误报处理、匿名期处理等）
 
 </details>
