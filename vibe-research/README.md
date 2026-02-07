@@ -22,7 +22,7 @@
 This module provides a **complete pipeline** for survey literature review:
 
 ```
-🔍 Search  →  📥 Download  →  📝 Summarize  →  🗂️ Classify & Organize
+🔍 Search  →  📥 Download  →  📝 Summarize  →  🗂️ Classify  →  📋 Review
 ```
 
 ## Directory Structure
@@ -39,6 +39,10 @@ scripts/
 │
 ├── 📂 paper-summary/          # AI summarization
 │   └── batch_summary.py       # DeepSeek batch summary (parallel)
+│
+├── 📂 paper-review/           # AI-powered paper review
+│   ├── README.md              # Review workflow documentation
+│   └── checklist_template.md  # Reusable review checklist
 │
 └── 📂 utils/                  # Advanced tools
     ├── pdf_constructor.py     # Survey outline classification + mindmaps
@@ -91,6 +95,7 @@ Each subdirectory has its own README with detailed usage instructions:
 - [**Paper Search** →](./scripts/paper-search/README.md) Streamlit web app for multi-source literature search
 - [**Paper Download** →](./scripts/paper-download/README.md) Cascading download scripts with retry logic
 - [**Paper Summary** →](./scripts/paper-summary/README.md) Batch AI summarization with parallel workers
+- [**Paper Review** →](./scripts/paper-review/README.md) AI-powered systematic paper review with 9 parallel agents
 - [**Utilities** →](./scripts/utils/README.md) Classification, validation, visualization tools
 
 </details>
@@ -105,7 +110,7 @@ Each subdirectory has its own README with detailed usage instructions:
 本模块提供了 **完整的文献综述流水线**：
 
 ```
-🔍 检索论文  →  📥 下载PDF  →  📝 批量摘要  →  🗂️ 分类整理
+🔍 检索论文  →  📥 下载PDF  →  📝 批量摘要  →  🗂️ 分类整理  →  📋 论文审稿
 ```
 
 ## 目录结构
@@ -122,6 +127,10 @@ scripts/
 │
 ├── 📂 paper-summary/          # AI摘要
 │   └── batch_summary.py       # DeepSeek批量摘要（并行处理）
+│
+├── 📂 paper-review/           # AI辅助审稿
+│   ├── README.md              # 审稿工作流文档
+│   └── checklist_template.md  # 可复用审稿检查清单
 │
 └── 📂 utils/                  # 高级工具
     ├── pdf_constructor.py     # 按Survey大纲分类 + 生成思维导图
@@ -174,6 +183,7 @@ streamlit run scripts/paper-search/paper_search.py
 - [**文献检索** →](./scripts/paper-search/README.md) Streamlit多源文献检索工具
 - [**论文下载** →](./scripts/paper-download/README.md) 级联下载与重试脚本
 - [**批量摘要** →](./scripts/paper-summary/README.md) DeepSeek并行AI摘要
+- [**论文审稿** →](./scripts/paper-review/README.md) 9个并行AI代理系统性审稿
 - [**工具集** →](./scripts/utils/README.md) 分类、验证、可视化工具
 
 </details>
