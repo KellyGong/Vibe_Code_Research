@@ -50,6 +50,7 @@
 ## Links
 
 - [Antigravity](https://antigravity.google/) (or Google's official product page)
+- [Download Antigravity](https://antigravity.google/download)
 - [Google AI](https://ai.google/)
 
 </details>
@@ -94,6 +95,7 @@
 ## 链接
 
 - [Antigravity](https://antigravity.google/)（或 Google 官方产品页）
+- [下载 Antigravity](https://antigravity.google/download)
 - [Google AI](https://ai.google/)
 
 </details>
