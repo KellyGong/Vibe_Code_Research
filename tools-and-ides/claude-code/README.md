@@ -28,6 +28,46 @@
 
 You can stick to the official product or bring your own API key via third-party setups for better cost/performance.
 
+### Third-Party API Relay Setup
+
+A recommended relay service: **[OneFun](https://onefun.top/console/token)** — register and get your token on the console page.
+
+**Step 1: Set environment variables in terminal**
+
+```bash
+export ANTHROPIC_BASE_URL="https://api.onefun.top"
+export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"   # Replace with your actual token
+```
+
+> This only lasts for the current terminal session.
+
+**Step 2 (optional): Make it permanent**
+
+Add the two `export` lines to your shell config so they load automatically on every new terminal:
+
+```bash
+# For bash users:
+echo 'export ANTHROPIC_BASE_URL="https://api.onefun.top"' >> ~/.bashrc
+echo 'export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"' >> ~/.bashrc
+source ~/.bashrc
+
+# For zsh users:
+echo 'export ANTHROPIC_BASE_URL="https://api.onefun.top"' >> ~/.zshrc
+echo 'export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+Then just run `claude` in terminal to start.
+
+## Usage Tips
+
+| Command / Feature | What It Does |
+|-------------------|--------------|
+| **Subagents** | Claude Code can spawn multiple sub-agents in parallel to handle complex tasks — just describe a multi-part task and it will dispatch agents automatically |
+| `/context` | View the current conversation context (what files and info Claude is working with) |
+| `/cost` | Check your usage and token spend for the current session |
+| `/help` | Show all available slash commands |
+
 ## Pros
 
 - **Most capable agent** — Top-tier reasoning and code edits
@@ -63,6 +103,46 @@ You can stick to the official product or bring your own API key via third-party 
 | **第三方 API 中转** | 通过中转服务调用 Claude API，往往 **性价比高** 且灵活 |
 
 可选择官方订阅，或通过第三方配置自带 API，在成本与性能之间取得平衡。
+
+### 第三方 API 中转配置
+
+推荐中转：**[OneFun](https://onefun.top/console/token)** — 在控制台页面注册并获取 Token。
+
+**第一步：在终端设置环境变量**
+
+```bash
+export ANTHROPIC_BASE_URL="https://api.onefun.top"
+export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"   # 替换为你的实际 Token
+```
+
+> 这只在当前终端会话中有效。
+
+**第二步（可选）：永久生效**
+
+把两行 `export` 写入 shell 配置文件，之后每次打开终端自动加载：
+
+```bash
+# bash 用户：
+echo 'export ANTHROPIC_BASE_URL="https://api.onefun.top"' >> ~/.bashrc
+echo 'export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"' >> ~/.bashrc
+source ~/.bashrc
+
+# zsh 用户：
+echo 'export ANTHROPIC_BASE_URL="https://api.onefun.top"' >> ~/.zshrc
+echo 'export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+然后在终端直接运行 `claude` 即可启动。
+
+## 使用技巧
+
+| 命令 / 功能 | 说明 |
+|-------------|------|
+| **Subagents** | Claude Code 可以并行派生多个子智能体处理复杂任务 — 描述一个多步任务，它会自动分配 agent |
+| `/context` | 查看当前对话上下文（Claude 正在处理哪些文件和信息） |
+| `/cost` | 查看当前会话的用量与 Token 消耗 |
+| `/help` | 查看所有可用斜杠命令 |
 
 ## 优点
 
