@@ -98,6 +98,37 @@ Each subdirectory has its own README with detailed usage instructions:
 - [**Paper Review** →](./scripts/paper-review/README.md) AI-powered systematic paper review with 9 parallel agents
 - [**Utilities** →](./scripts/utils/README.md) Classification, validation, visualization tools
 
+## Awesome Vibe-Research Skills
+
+A curated list of open-source skill libraries that supercharge your AI coding agent for research tasks. Install them and your agent becomes a full-powered AI research assistant.
+
+### [Orchestra AI Research Skills](https://github.com/Orchestra-Research/AI-research-SKILLs)
+
+> **83 production-ready skills** across 20 categories — the most comprehensive open-source AI research engineering skill library. Works with Claude Code, Cursor, Codex, Gemini CLI, and more.
+
+<a href="https://github.com/Orchestra-Research/AI-research-SKILLs"><img src="https://img.shields.io/github/stars/Orchestra-Research/AI-research-SKILLs?style=social" alt="Stars"/></a>
+
+```bash
+# One-command install to any coding agent
+npx @orchestra-research/ai-research-skills
+```
+
+| Category | Skills | Highlights |
+|----------|:------:|------------|
+| **Model Architecture** | 5 | LitGPT, Mamba, NanoGPT, RWKV, TorchTitan |
+| **Fine-Tuning** | 4 | Axolotl, LLaMA-Factory, PEFT, Unsloth |
+| **Post-Training (RL)** | 8 | TRL, GRPO, OpenRLHF, SimPO, verl, slime, miles, torchforge |
+| **Distributed Training** | 6 | DeepSpeed, FSDP, Megatron-Core, Accelerate, Lightning, Ray |
+| **Optimization** | 6 | Flash Attention, bitsandbytes, GPTQ, AWQ, HQQ, GGUF |
+| **Inference & Serving** | 4 | vLLM, TensorRT-LLM, llama.cpp, SGLang |
+| **Agents & RAG** | 9 | LangChain, LlamaIndex, CrewAI, Chroma, FAISS, Pinecone, Qdrant |
+| **Multimodal** | 7 | CLIP, Whisper, LLaVA, Stable Diffusion, SAM, BLIP-2, AudioCraft |
+| **Prompt Engineering** | 4 | DSPy, Instructor, Guidance, Outlines |
+| **Mech Interpretability** | 4 | TransformerLens, SAELens, pyvene, nnsight |
+| **Safety & Alignment** | 4 | Constitutional AI, LlamaGuard, NeMo Guardrails, Prompt Guard |
+| **MLOps & Eval** | 9 | W&B, MLflow, TensorBoard, lm-eval-harness, BigCode, NeMo Eval |
+| **Others** | 13 | Tokenization, Data Processing, Infrastructure, Emerging Techniques, ML Paper Writing |
+
 </details>
 
 ---
@@ -185,6 +216,37 @@ streamlit run scripts/paper-search/paper_search.py
 - [**批量摘要** →](./scripts/paper-summary/README.md) DeepSeek并行AI摘要
 - [**论文审稿** →](./scripts/paper-review/README.md) 9个并行AI代理系统性审稿
 - [**工具集** →](./scripts/utils/README.md) 分类、验证、可视化工具
+
+## Awesome Vibe-Research Skills
+
+精选的开源 Skill 库，安装后你的 AI 编程代理即可成为全能 AI 科研助手。
+
+### [Orchestra AI Research Skills](https://github.com/Orchestra-Research/AI-research-SKILLs)
+
+> **83 个生产级 Skills**，覆盖 20 个类别 — 目前最全面的开源 AI 科研工程 Skill 库。支持 Claude Code、Cursor、Codex、Gemini CLI 等。
+
+<a href="https://github.com/Orchestra-Research/AI-research-SKILLs"><img src="https://img.shields.io/github/stars/Orchestra-Research/AI-research-SKILLs?style=social" alt="Stars"/></a>
+
+```bash
+# 一键安装到任意编程代理
+npx @orchestra-research/ai-research-skills
+```
+
+| 类别 | 数量 | 包含 |
+|------|:----:|------|
+| **模型架构** | 5 | LitGPT, Mamba, NanoGPT, RWKV, TorchTitan |
+| **微调** | 4 | Axolotl, LLaMA-Factory, PEFT, Unsloth |
+| **后训练 (RL)** | 8 | TRL, GRPO, OpenRLHF, SimPO, verl, slime, miles, torchforge |
+| **分布式训练** | 6 | DeepSpeed, FSDP, Megatron-Core, Accelerate, Lightning, Ray |
+| **优化** | 6 | Flash Attention, bitsandbytes, GPTQ, AWQ, HQQ, GGUF |
+| **推理部署** | 4 | vLLM, TensorRT-LLM, llama.cpp, SGLang |
+| **代理 & RAG** | 9 | LangChain, LlamaIndex, CrewAI, Chroma, FAISS, Pinecone, Qdrant |
+| **多模态** | 7 | CLIP, Whisper, LLaVA, Stable Diffusion, SAM, BLIP-2, AudioCraft |
+| **Prompt工程** | 4 | DSPy, Instructor, Guidance, Outlines |
+| **机制可解释性** | 4 | TransformerLens, SAELens, pyvene, nnsight |
+| **安全对齐** | 4 | Constitutional AI, LlamaGuard, NeMo Guardrails, Prompt Guard |
+| **MLOps & 评估** | 9 | W&B, MLflow, TensorBoard, lm-eval-harness, BigCode, NeMo Eval |
+| **其他** | 13 | Tokenization、数据处理、基础设施、前沿技术、论文写作 |
 
 </details>
 
