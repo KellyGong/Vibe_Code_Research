@@ -114,15 +114,26 @@ Uses a "follow the trail" strategy:
 
 ### Files
 
-| File | Description |
-|------|-------------|
-| `README.md` | This documentation |
-| `SKILL.md` | Complete Cursor Skill definition (agent prompts, check details, output format) |
-| `checklist_template.md` | Standalone review checklist template |
+```
+paper-review/
+├── SKILL.md                  # Cursor Skill definition (orchestration + prompts)
+├── README.md                 # This documentation
+├── checklist_template.md     # Standalone review checklist (28 items)
+├── conferences/
+│   └── README.md             # Venue requirement query guide (NLP/ML/CV/AI)
+└── modules/                  # Detailed check specs per module
+    ├── terminology.md        # Coined terms, abbreviations, metaphors
+    ├── figures.md            # Table/Figure caption completeness
+    ├── introduction.md       # Gap-Solution mapping, contribution clarity
+    ├── methods.md            # Notation definition, symbol conflicts
+    ├── citations.md          # Existence verification, context accuracy
+    ├── experiments.md        # Hardware, training details, red flags
+    └── related-work.md       # "Follow the trail" strategy + limitation check
+```
 
 ### Install as Cursor Skill
 
-To enable the automatic review workflow in Cursor IDE, copy (or symlink) the skill folder to your Cursor skills directory:
+To enable the automatic review workflow in Cursor IDE, copy (or symlink) this entire folder:
 
 ```bash
 # Option A: Symlink (recommended — stays in sync)
@@ -137,10 +148,14 @@ Once installed, just ask Cursor:
 Please review the paper at /path/to/paper.pdf, target venue is ACL 2026
 ```
 
-The `SKILL.md` file contains the full agent orchestration logic:
-- **10 check modules** with detailed check points and output table formats
-- **4 sub-agent prompt templates** (generic, citation, related work, code review)
-- **8 operational notes** (parallelism, false positive handling, anonymization, etc.)
+### What's Inside
+
+| Component | Description |
+|-----------|-------------|
+| `SKILL.md` | Main orchestration: 3-step pipeline, 9 parallel agents, 4 prompt templates, 8 notes |
+| `modules/` | Per-module detailed check specs with scoring criteria, common issues, output templates |
+| `conferences/` | How to query venue requirements (NLP/ML/CV/AI quick references) |
+| `checklist_template.md` | Ready-to-use review report template (copy & fill) |
 
 </details>
 
@@ -247,15 +262,26 @@ Cursor 会自动：
 
 ### 文件说明
 
-| 文件 | 说明 |
-|------|------|
-| `README.md` | 本文档 |
-| `SKILL.md` | 完整的 Cursor Skill 定义（代理 prompt、检查细节、输出格式） |
-| `checklist_template.md` | 独立审稿检查清单模板 |
+```
+paper-review/
+├── SKILL.md                  # Cursor Skill 定义（编排逻辑 + Prompt模板）
+├── README.md                 # 本文档
+├── checklist_template.md     # 独立审稿检查清单（28项）
+├── conferences/
+│   └── README.md             # 会议要求查询指南（NLP/ML/CV/AI）
+└── modules/                  # 各模块详细检查规范
+    ├── terminology.md        # 术语检查：自创术语、缩写、比喻性表达
+    ├── figures.md            # 图表检查：Table/Figure caption完整性
+    ├── introduction.md       # 引言结构：Gap-Solution映射、Contribution清晰度
+    ├── methods.md            # 方法检查：符号定义、符号冲突、格式一致性
+    ├── citations.md          # 引用核验：存在性验证、上下文准确性
+    ├── experiments.md        # 实验检查：硬件声明、训练细节、红旗信号
+    └── related-work.md       # 相关工作：顺藤摸瓜策略 + Limitation检查
+```
 
 ### 安装为 Cursor Skill
 
-将本文件夹复制（或软链接）到 Cursor 的 skills 目录即可启用自动审稿：
+将本文件夹整体复制（或软链接）到 Cursor 的 skills 目录：
 
 ```bash
 # 方式A：软链接（推荐 — 自动保持同步）
@@ -270,9 +296,13 @@ cp -r . ~/.cursor/skills/paper-review
 请审查论文 /path/to/paper.pdf，目标会议是 ACL 2026
 ```
 
-`SKILL.md` 包含完整的代理编排逻辑：
-- **10 个检查模块**的详细检查要点和输出表格格式
-- **4 个子代理 Prompt 模板**（通用、引用核验、相关工作、代码仓库）
-- **8 条实操注意事项**（并行策略、误报处理、匿名期处理等）
+### 各组件说明
+
+| 组件 | 说明 |
+|------|------|
+| `SKILL.md` | 主编排：3步流水线、9个并行代理、4个Prompt模板、8条注意事项 |
+| `modules/` | 各模块的详细检查规范，含评分标准、常见问题模式、输出模板 |
+| `conferences/` | 会议要求实时查询指南，含NLP/ML/CV/AI各类会议快速参考 |
+| `checklist_template.md` | 即用型审稿报告模板（复制后直接填写） |
 
 </details>
