@@ -1,13 +1,14 @@
 <h1 align="center">🛠️ Vibe Coding Tools & IDEs</h1>
 
 <p align="center">
-  <b>A comprehensive guide to the tools and IDEs that power the vibe coding workflow</b>
+  <b>AI coding tools we actually use — deep dives with setup guides</b>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/AI_Native-IDEs-green" alt="AI Native"/>
-  <img src="https://img.shields.io/badge/Extensions-Plugins-blue" alt="Extensions"/>
-  <img src="https://img.shields.io/badge/CLI-Terminal-orange" alt="CLI"/>
+  <img src="https://img.shields.io/badge/Cursor-IDE-007ACC?logo=visual-studio-code" alt="Cursor"/>
+  <img src="https://img.shields.io/badge/Codex-CLI_%2B_Extension-412991?logo=openai" alt="Codex"/>
+  <img src="https://img.shields.io/badge/Claude_Code-Terminal-CC785C?logo=anthropic" alt="Claude Code"/>
+  <img src="https://img.shields.io/badge/Antigravity-Google-4285F4?logo=google" alt="Antigravity"/>
 </p>
 
 ---
@@ -15,63 +16,24 @@
 <details open>
 <summary><b>🇺🇸 English</b></summary>
 
-## Featured Tools (Deep Dives)
+## Tools
 
-Detailed guides for the most-used AI coding tools:
+| Tool | Type | Description | Read more |
+|------|------|-------------|-----------|
+| **[Cursor](cursor/)** | GUI IDE | VS Code fork, multi-model (GPT/Claude/Gemini), Composer & Agent, GUI diff | [cursor/README.md](cursor/README.md) |
+| **[OpenAI Codex](codex/)** | Desktop + Extension + CLI | Three forms; 5-hour rolling limits; reverse proxy & CLI setup guides included | [codex/README.md](codex/README.md) |
+| **[Claude Code](claude-code/)** | Terminal Agent | Anthropic's most capable agent; API relay setup, Opus verification | [claude-code/README.md](claude-code/README.md) |
+| **[Google Antigravity](antigravity/)** | GUI IDE | Claude + Gemini only, free for Google Pro; TUN required, quota watcher plugin | [antigravity/README.md](antigravity/README.md) |
 
-| Tool | Description | Read more |
-|------|-------------|-----------|
-| **[Cursor](cursor/README.md)** | VS Code fork, GUI-based, multi-model (GPT/Claude/Gemini), Composer & Agent | [cursor/README.md](cursor/README.md) |
-| **[OpenAI Codex](codex/README.md)** | Desktop app + VS Code extension + CLI; 5-hour rolling limits, strong model | [codex/README.md](codex/README.md) |
-| **[Claude Code](claude-code/README.md)** | Anthropic's terminal-based agent; most capable, flexible API options | [claude-code/README.md](claude-code/README.md) |
-| **[Google Antigravity](antigravity/README.md)** | Google's AI IDE; Claude + Gemini only, free for Google Pro users | [antigravity/README.md](antigravity/README.md) |
+## Quick Comparison
 
-## Table of Contents
-
-- [AI-Native IDEs](#ai-native-ides)
-- [AI Coding Assistants (Plugins / Extensions)](#ai-coding-assistants-plugins--extensions)
-- [CLI & Terminal Tools](#cli--terminal-tools)
-- [Comparison Table](#comparison-table)
-
----
-
-## AI-Native IDEs
-
-IDEs built from the ground up with AI at the core.
-
-| Tool | Description | Link |
-|------|-------------|------|
-| **[Cursor](cursor/README.md)** | VS Code fork with deep AI integration (Tab, Chat, Composer, Agent) | [cursor.com](https://cursor.com) |
-| **Windsurf** | AI-native IDE by Codeium with Cascade agent flow | [windsurf.com](https://windsurf.com) |
-| **Trae** | AI-native IDE by ByteDance | [trae.ai](https://trae.ai) |
-| **Void** | Open-source AI code editor | [voideditor.com](https://voideditor.com) |
-
-## AI Coding Assistants (Plugins / Extensions)
-
-AI tools that integrate into existing IDEs.
-
-| Tool | Description | Link |
-|------|-------------|------|
-| **GitHub Copilot** | AI pair programmer by GitHub/OpenAI | [github.com/features/copilot](https://github.com/features/copilot) |
-| **Cline** | Autonomous coding agent as VS Code extension | [github.com/cline/cline](https://github.com/cline/cline) |
-| **Roo Code** | Fork of Cline with additional features | [github.com/RooVetGit/Roo-Code](https://github.com/RooVetGit/Roo-Code) |
-| **Codeium** | Free AI autocomplete for 70+ languages | [codeium.com](https://codeium.com) |
-| **Amazon Q Developer** | AI assistant by AWS (formerly CodeWhisperer) | [aws.amazon.com/q/developer](https://aws.amazon.com/q/developer) |
-
-## CLI & Terminal Tools
-
-AI-powered tools for the command line.
-
-| Tool | Description | Link |
-|------|-------------|------|
-| **[Claude Code](claude-code/README.md)** | Agentic coding tool by Anthropic, runs in terminal | [docs.anthropic.com](https://docs.anthropic.com/en/docs/claude-code) |
-| **[Codex CLI](codex/README.md)** | OpenAI's open-source coding agent for terminal | [github.com/openai/codex](https://github.com/openai/codex) |
-| **Aider** | AI pair programming in the terminal | [aider.chat](https://aider.chat) |
-| **Warp** | AI-native terminal with built-in AI commands | [warp.dev](https://warp.dev) |
-
-## Comparison Table
-
-> Coming soon — a detailed feature-by-feature comparison of the tools above covering pricing, model support, agent capabilities, and more. See [Cursor](cursor/README.md), [Codex](codex/README.md), [Claude Code](claude-code/README.md), and [Antigravity](antigravity/README.md) for per-tool details.
+| | Cursor | Codex | Claude Code | Antigravity |
+|---|---|---|---|---|
+| **Interface** | GUI (VS Code fork) | Desktop / Extension / CLI | Terminal only | GUI (VS Code-like) |
+| **Models** | GPT, Claude, Gemini | OpenAI models | Claude (Opus/Sonnet) | Claude + Gemini |
+| **Pricing** | ~$20/mo Pro + credits | Rolling limits (nearly free) | Subscription or API relay | Free for Google Pro |
+| **Remote server** | Native SSH | Extension: reverse tunnel; CLI: tmux + proxy | API relay (no VPN needed) | TUN mode required |
+| **Best for** | GUI lovers, model flexibility | Budget-conscious, multi-form | Power users, best agent | Google Pro subscribers |
 
 </details>
 
@@ -80,66 +42,29 @@ AI-powered tools for the command line.
 <details>
 <summary><b>🇨🇳 中文</b></summary>
 
-## 精选工具（详细说明）
+## 工具
 
-最常用的 AI 编程工具详细指南：
+| 工具 | 类型 | 说明 | 阅读更多 |
+|------|------|------|----------|
+| **[Cursor](cursor/)** | 图形 IDE | VS Code 分支，多模型（GPT/Claude/Gemini），Composer 与 Agent，GUI diff | [cursor/README.md](cursor/README.md) |
+| **[OpenAI Codex](codex/)** | 桌面 + 扩展 + CLI | 三种形态；5 小时滚动额度；含反向代理与 CLI 配置教程 | [codex/README.md](codex/README.md) |
+| **[Claude Code](claude-code/)** | 终端智能体 | Anthropic 能力最强的智能体；API 中转配置、Opus 验证方法 | [claude-code/README.md](claude-code/README.md) |
+| **[Google Antigravity](antigravity/)** | 图形 IDE | 仅 Claude + Gemini，Google Pro 免费；需 TUN，额度监控插件 | [antigravity/README.md](antigravity/README.md) |
 
-| 工具 | 说明 | 阅读更多 |
-|------|------|----------|
-| **[Cursor](cursor/README.md)** | VS Code 分支，图形界面，多模型（GPT/Claude/Gemini），Composer 与 Agent | [cursor/README.md](cursor/README.md) |
-| **[OpenAI Codex](codex/README.md)** | 桌面应用 + VS Code 扩展 + CLI；5 小时滚动额度，模型强 | [codex/README.md](codex/README.md) |
-| **[Claude Code](claude-code/README.md)** | Anthropic 终端智能体；能力最强，API 灵活 | [claude-code/README.md](claude-code/README.md) |
-| **[Google Antigravity](antigravity/README.md)** | Google AI IDE；仅 Claude + Gemini，Google Pro 用户免费 | [antigravity/README.md](antigravity/README.md) |
+## 快速对比
 
-## 目录
-
-- [AI 原生 IDE](#ai-原生-ide)
-- [AI 编程助手（插件 / 扩展）](#ai-编程助手插件--扩展)
-- [CLI 与终端工具](#cli-与终端工具)
-- [对比表](#对比表)
-
----
-
-## AI 原生 IDE
-
-以 AI 为核心的 IDE。
-
-| 工具 | 说明 | 链接 |
-|------|------|------|
-| **[Cursor](cursor/README.md)** | VS Code 分支，深度 AI 集成（Tab、Chat、Composer、Agent） | [cursor.com](https://cursor.com) |
-| **Windsurf** | Codeium 的 AI 原生 IDE，Cascade 智能体流程 | [windsurf.com](https://windsurf.com) |
-| **Trae** | 字节跳动 AI 原生 IDE | [trae.ai](https://trae.ai) |
-| **Void** | 开源 AI 代码编辑器 | [voideditor.com](https://voideditor.com) |
-
-## AI 编程助手（插件 / 扩展）
-
-集成到现有 IDE 的 AI 工具。
-
-| 工具 | 说明 | 链接 |
-|------|------|------|
-| **GitHub Copilot** | GitHub/OpenAI 的 AI 结对编程 | [github.com/features/copilot](https://github.com/features/copilot) |
-| **Cline** | VS Code 扩展形态的自主编码智能体 | [github.com/cline/cline](https://github.com/cline/cline) |
-| **Roo Code** | Cline 分支，功能增强 | [github.com/RooVetGit/Roo-Code](https://github.com/RooVetGit/Roo-Code) |
-| **Codeium** | 70+ 语言免费 AI 补全 | [codeium.com](https://codeium.com) |
-| **Amazon Q Developer** | AWS AI 助手（原 CodeWhisperer） | [aws.amazon.com/q/developer](https://aws.amazon.com/q/developer) |
-
-## CLI 与终端工具
-
-命令行 AI 工具。
-
-| 工具 | 说明 | 链接 |
-|------|------|------|
-| **[Claude Code](claude-code/README.md)** | Anthropic 智能体式编程，终端运行 | [docs.anthropic.com](https://docs.anthropic.com/en/docs/claude-code) |
-| **[Codex CLI](codex/README.md)** | OpenAI 开源终端编码智能体 | [github.com/openai/codex](https://github.com/openai/codex) |
-| **Aider** | 终端内 AI 结对编程 | [aider.chat](https://aider.chat) |
-| **Warp** | AI 原生终端，内置 AI 命令 | [warp.dev](https://warp.dev) |
-
-## 对比表
-
-> 即将推出 — 上述工具的详细功能对比（定价、模型支持、智能体能力等）。详见 [Cursor](cursor/README.md)、[Codex](codex/README.md)、[Claude Code](claude-code/README.md)、[Antigravity](antigravity/README.md)。
+| | Cursor | Codex | Claude Code | Antigravity |
+|---|---|---|---|---|
+| **界面** | GUI（VS Code 分支） | 桌面 / 扩展 / CLI | 纯终端 | GUI（类 VS Code） |
+| **模型** | GPT、Claude、Gemini | OpenAI 模型 | Claude（Opus/Sonnet） | Claude + Gemini |
+| **定价** | Pro ~$20/月 + 额度 | 滚动额度（几乎免费） | 订阅或 API 中转 | Google Pro 免费 |
+| **远程服务器** | 原生 SSH | Extension: 反向隧道；CLI: tmux + 代理 | API 中转（无需 VPN） | 需 TUN 模式 |
+| **适合** | 喜欢 GUI、需要模型灵活度 | 预算有限、多形态使用 | 重度用户、最强智能体 | Google Pro 订阅者 |
 
 </details>
 
 ---
 
-*Maintained by Mingxu Zhang & Zheng Gong*
+<p align="center">
+  <sub>Maintained by <b>Mingxu Zhang</b> & <b>Zheng Gong</b></sub>
+</p>
