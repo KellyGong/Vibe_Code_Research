@@ -103,6 +103,67 @@ curl -x http://127.0.0.1:17890 https://api.openai.com
 
 If you get a response (even an auth error), the tunnel is working. If it times out, check that your local proxy (Clash) is running and listening on the correct port.
 
+## Codex CLI on Remote Servers
+
+For the CLI, you don't need the Extension's reverse tunnel — instead, run a proxy (Clash) directly on the server inside a **tmux** session, then create a shell alias so `codex` always routes through it.
+
+### Step 1: Set up a proxy on the server
+
+Install and run Clash (or similar) on the remote server in a tmux session so it stays alive:
+
+```bash
+tmux new -s clash
+./clash-linux-amd64 -f your-config.yaml
+# Ctrl+B, D to detach — Clash keeps running in the background
+```
+
+For detailed server-side Clash setup, see: **[Common Linux Server Commands & Configurations](https://github.com/mingxuZhang2/Common-Linux-server-commands-and-configurations)**
+
+### Step 2: Create aliases in `~/.bashrc`
+
+Add aliases so `codex` (or a custom command like `gpt`) automatically uses the proxy:
+
+```bash
+# "codex" — route through SSH reverse tunnel proxy (port 17890)
+alias codex='HTTP_PROXY=http://127.0.0.1:17890 \
+  HTTPS_PROXY=http://127.0.0.1:17890 \
+  http_proxy=http://127.0.0.1:17890 \
+  https_proxy=http://127.0.0.1:17890 \
+  codex'
+
+# "gpt" — route through local Clash running on the server (port 7890)
+alias gpt='HTTP_PROXY=http://127.0.0.1:7890 \
+  HTTPS_PROXY=http://127.0.0.1:7890 \
+  http_proxy=http://127.0.0.1:7890 \
+  https_proxy=http://127.0.0.1:7890 \
+  codex'
+
+# Utility: run any command through the proxy
+withproxy() {
+    HTTP_PROXY=http://127.0.0.1:17890 \
+    HTTPS_PROXY=http://127.0.0.1:17890 \
+    http_proxy=http://127.0.0.1:17890 \
+    https_proxy=http://127.0.0.1:17890 \
+    "$@"
+}
+```
+
+Then `source ~/.bashrc`. Now just type `gpt` to start Codex CLI through the server's local Clash, or `codex` to go through the SSH reverse tunnel.
+
+### Step 3: Authentication — copy `auth.json` from local
+
+Codex CLI requires login, but the login flow needs a browser. Solution: **log in on your local machine first**, then copy the auth file to the server.
+
+```bash
+# 1. On your LOCAL machine, log in:
+codex --login
+
+# 2. Copy the auth file to the remote server:
+scp ~/.codex/auth.json your-server:~/.codex/auth.json
+```
+
+That's it — the CLI on the remote server will use the copied credentials. No browser needed on the server.
+
 ## Pros
 
 - **Cheap / free within limits** — Most users stay under the caps
@@ -118,6 +179,7 @@ If you get a response (even an auth error), the tunnel is working. If it times o
 
 - [Codex](https://codex.openai.com) / [OpenAI Codex](https://openai.com/codex)
 - [Codex CLI (open-source)](https://github.com/openai/codex)
+- [Linux Server Proxy Setup Guide](https://github.com/mingxuZhang2/Common-Linux-server-commands-and-configurations)
 
 </details>
 
@@ -214,6 +276,67 @@ curl -x http://127.0.0.1:17890 https://api.openai.com
 
 如果有响应（哪怕是认证错误），说明隧道正常。如果超时，检查本地 Clash 是否运行且监听正确端口。
 
+## Codex CLI 远程服务器配置
+
+CLI 不需要 Extension 那套反向隧道 — 直接在服务器上用 **tmux** 挂一个代理（Clash），然后设 alias 让 `codex` 命令默认走代理端口。
+
+### 第一步：在服务器上运行代理
+
+在远程服务器上用 tmux 启动 Clash，让它在后台持续运行：
+
+```bash
+tmux new -s clash
+./clash-linux-amd64 -f your-config.yaml
+# Ctrl+B, D 脱离 — Clash 在后台继续跑
+```
+
+服务器端 Clash 的详细安装配置参考：**[Common Linux Server Commands & Configurations](https://github.com/mingxuZhang2/Common-Linux-server-commands-and-configurations)**
+
+### 第二步：在 `~/.bashrc` 中配置 alias
+
+添加 alias，让 `codex`（或自定义命令如 `gpt`）自动走代理：
+
+```bash
+# "codex" — 走 SSH 反向隧道代理（端口 17890）
+alias codex='HTTP_PROXY=http://127.0.0.1:17890 \
+  HTTPS_PROXY=http://127.0.0.1:17890 \
+  http_proxy=http://127.0.0.1:17890 \
+  https_proxy=http://127.0.0.1:17890 \
+  codex'
+
+# "gpt" — 走服务器本地 Clash（端口 7890）
+alias gpt='HTTP_PROXY=http://127.0.0.1:7890 \
+  HTTPS_PROXY=http://127.0.0.1:7890 \
+  http_proxy=http://127.0.0.1:7890 \
+  https_proxy=http://127.0.0.1:7890 \
+  codex'
+
+# 工具函数：让任意命令临时走代理
+withproxy() {
+    HTTP_PROXY=http://127.0.0.1:17890 \
+    HTTPS_PROXY=http://127.0.0.1:17890 \
+    http_proxy=http://127.0.0.1:17890 \
+    https_proxy=http://127.0.0.1:17890 \
+    "$@"
+}
+```
+
+然后 `source ~/.bashrc`。之后输入 `gpt` 就能通过服务器本地 Clash 启动 Codex CLI，输入 `codex` 则走 SSH 反向隧道。
+
+### 第三步：认证 — 从本地复制 `auth.json`
+
+Codex CLI 登录需要浏览器，但服务器上通常没有。解决方法：**先在本地登录，再把认证文件拷过去**。
+
+```bash
+# 1. 在本地机器上登录：
+codex --login
+
+# 2. 把认证文件拷到远程服务器：
+scp ~/.codex/auth.json your-server:~/.codex/auth.json
+```
+
+搞定 — 远程服务器上的 CLI 会直接使用复制过去的凭据，不需要在服务器上开浏览器。
+
 ## 优点
 
 - **在额度内便宜/免费** — 多数用户不会超限
@@ -229,5 +352,6 @@ curl -x http://127.0.0.1:17890 https://api.openai.com
 
 - [Codex](https://codex.openai.com) / [OpenAI Codex](https://openai.com/codex)
 - [Codex CLI（开源）](https://github.com/openai/codex)
+- [服务器代理配置指南](https://github.com/mingxuZhang2/Common-Linux-server-commands-and-configurations)
 
 </details>
