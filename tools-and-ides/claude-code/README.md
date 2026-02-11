@@ -59,6 +59,40 @@ source ~/.zshrc
 
 Then just run `claude` in terminal to start.
 
+### Custom Model Configuration
+
+If you want to use alternative models available in your API key (e.g., Kimi-K2, Deepseek, etc.), you can configure the model via environment variables or settings file.
+
+**Option 1: Set environment variables in terminal**
+
+```bash
+export ANTHROPIC_MODEL="moonshotai/kimi-k2-thinking"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="moonshotai/kimi-k2-thinking"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="moonshotai/kimi-k2-thinking"
+export ANTHROPIC_SMALL_FAST_MODEL="moonshotai/kimi-k2-thinking"
+```
+
+> Replace `moonshotai/kimi-k2-thinking` with your desired model name.
+
+**Option 2: Add to `~/.claude/settings.json`**
+
+Edit or create `~/.claude/settings.json` and add the model configuration in the `env` section:
+
+```json
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-your-api-key-here",
+    "ANTHROPIC_BASE_URL": "YOUR_BASE_URL",
+    "ANTHROPIC_MODEL": "moonshotai/kimi-k2-thinking",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "moonshotai/kimi-k2-thinking",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "moonshotai/kimi-k2-thinking",
+    "ANTHROPIC_SMALL_FAST_MODEL": "moonshotai/kimi-k2-thinking"
+  }
+}
+```
+
+> This method makes the configuration persistent across all terminal sessions.
+
 ### Official Relay (Recommended for Reliability)
 
 > **Warning:** Some third-party relays are unreliable — they may secretly downgrade your model (e.g. serve Sonnet instead of Opus), add extra latency, or go offline without notice.
@@ -168,7 +202,41 @@ source ~/.zshrc
 
 然后在终端直接运行 `claude` 即可启动。
 
-### 官方转发（推荐，更可靠）
+### 自定义模型配置
+
+如果你想使用 API key 中可用的其他模型（如 Kimi-K2、Deepseek 等），可以通过环境变量或配置文件来设置模型。
+
+**方式一：在终端设置环境变量**
+
+```bash
+export ANTHROPIC_MODEL="moonshotai/kimi-k2-thinking"
+export ANTHROPIC_DEFAULT_SONNET_MODEL="moonshotai/kimi-k2-thinking"
+export ANTHROPIC_DEFAULT_HAIKU_MODEL="moonshotai/kimi-k2-thinking"
+export ANTHROPIC_SMALL_FAST_MODEL="moonshotai/kimi-k2-thinking"
+```
+
+> 将 `moonshotai/kimi-k2-thinking` 替换为你想使用的模型名称。
+
+**方式二：添加到 `~/.claude/settings.json`**
+
+编辑或创建 `~/.claude/settings.json` 文件，在 `env` 部分添加模型配置：
+
+```json
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "sk-your-api-key-here",
+    "ANTHROPIC_BASE_URL": "YOUR_BASE_URL",
+    "ANTHROPIC_MODEL": "moonshotai/kimi-k2-thinking",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "moonshotai/kimi-k2-thinking",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "moonshotai/kimi-k2-thinking",
+    "ANTHROPIC_SMALL_FAST_MODEL": "moonshotai/kimi-k2-thinking"
+  }
+}
+```
+
+> 这种方式使配置在所有终端会话中持久生效。
+
+### 官方转发（推荐,更可靠）
 
 > **注意：** 部分第三方中转站不靠谱 — 可能偷偷降级模型（比如给你 Sonnet 冒充 Opus）、增加延迟，甚至无预警下线。
 
