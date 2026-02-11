@@ -31,12 +31,21 @@ Cursor is a **VS Code fork** with AI built in from the ground up. It keeps the f
 | **Composer / Agent** | Multi-file editing and autonomous task execution |
 | **Rules & Skills** | Project rules (`.cursor/rules`) and installable skills |
 
-## Pricing (Pro)
+## Pricing
 
-- **Base**: ~$20/month subscription
-- **Credits**: ~$20–25 bonus credits per month on top of base
-- **On Demand Usage**: If you use your own billing, you can enable overdraft; typical cap is ~$20 extra
-- **Disposable accounts**: One-off paid accounts effectively get ~$65 total (base credits + bonus + overdraft), then hit the ceiling
+Cursor offers multiple subscription tiers to suit different needs:
+
+| Plan | Price | Fixed Credits | Bonus Credits | Notes |
+|------|-------|---------------|---------------|-------|
+| **Pro** | $20/month | ~$20 | ~$20–25 | Standard plan; suitable for moderate use |
+| **Pro+** | $60/month | ~$60 | Additional bonus | Higher fixed allocation |
+| **Ultra** | $400/month | ~$400 | ~$200 | Enterprise-level usage |
+
+**Key features of Pro subscription and above:**
+
+- Access to premium models (GPT-4, Claude Opus, Gemini Pro, etc.)
+- **Auto models** (~$150 worth): Cursor's smart model routing that automatically selects the best model for your task
+- **Composer 1.5**: Enhanced multi-file editing with better context awareness and planning capabilities
 
 Credits are consumed by model use (fast requests cost more). Heavy Agent/Composer use burns through the monthly allowance quickly.
 
@@ -46,11 +55,22 @@ Credits are consumed by model use (fast requests cost more). Heavy Agent/Compose
 - **GUI diff** — Review and edit changes in the editor
 - **Rich ecosystem** — Rules, skills, extensions
 - **Familiar** — Same as VS Code if you already use it
+- **Composer 1.5** — Advanced multi-file editing and planning capabilities
+- **Auto models** — Smart model selection for optimal performance
+
+## Usage Tips
+
+| Tip | Description |
+|-----|-------------|
+| **Network stability** | If experiencing unstable network, enable VPN **TUN mode** and switch to **HTTP/2.0** protocol for better reliability |
+| **Network diagnostics** | Go to Settings → Network to run diagnostics and check latency/connectivity issues |
+| **Model selection** | Use Auto mode to let Cursor pick the best model, or manually select for specific tasks |
+| **Composer workflow** | Use Composer 1.5 for complex multi-file refactoring with better context understanding |
 
 ## Cons
 
-- **Expensive** — Pro is costly and credits run out fast for power users
-- **Credit ceiling** — Disposable accounts are limited to ~$65 total usage
+- **Expensive** — Pro+ and Ultra plans can be costly for individual developers
+- **Credit management** — Need to monitor credit usage to avoid running out
 
 ## Links
 
@@ -79,12 +99,21 @@ Cursor 是基于 **VS Code 的 fork**，深度集成 AI。保留完整 VS Code �
 | **Composer / Agent** | 多文件编辑与自主任务执行 |
 | **Rules & Skills** | 项目规则（`.cursor/rules`）与可安装 Skill |
 
-## 付费模式（Pro）
+## 付费模式
 
-- **基础**：约 $20/月 订阅
-- **额度**：每月约 $20–25 奖励额度（在基础之外）
-- **On Demand Usage**：使用自己账单时可开启透支，一般额外约 $20 上限
-- **次抛账号**：单次付费账号实际总额度约 $65（基础 + 奖励 + 透支），用满即止
+Cursor 提供多个订阅层级以满足不同需求:
+
+| 套餐 | 价格 | 固定额度 | 奖励额度 | 说明 |
+|------|------|---------|---------|------|
+| **Pro** | $20/月 | ~$20 | ~$20–25 | 标准套餐，适合中度使用 |
+| **Pro+** | $60/月 | ~$60 | 额外奖励额度 | 更高的固定额度 |
+| **Ultra** | $400/月 | ~$400 | ~$200 | 企业级使用量 |
+
+**Pro 订阅及以上套餐的核心功能:**
+
+- 使用高级模型（GPT-4、Claude Opus、Gemini Pro 等）
+- **Auto 模型**（价值约 $150）：Cursor 的智能模型路由，自动为任务选择最佳模型
+- **Composer 1.5**：增强的多文件编辑，具备更好的上下文感知和规划能力
 
 额度按模型调用消耗（请求越快消耗越多）。大量使用 Agent/Composer 会很快用完当月额度。
 
@@ -94,11 +123,22 @@ Cursor 是基于 **VS Code 的 fork**，深度集成 AI。保留完整 VS Code �
 - **GUI 看 diff** — 在编辑器里审阅、修改变更
 - **生态丰富** — Rules、Skills、扩展
 - **上手简单** — 和 VS Code 一致
+- **Composer 1.5** — 高级多文件编辑和规划能力
+- **Auto 模型** — 智能模型选择，优化性能
+
+## 使用技巧
+
+| 技巧 | 说明 |
+|------|------|
+| **网络稳定性** | 如果网络不稳定，开启 VPN 的 **TUN 模式**，并切换到 **HTTP/2.0** 协议以提高可靠性 |
+| **网络诊断** | 进入 Settings → Network 运行诊断，检查延迟和连接问题 |
+| **模型选择** | 使用 Auto 模式让 Cursor 选择最佳模型，或针对特定任务手动选择 |
+| **Composer 工作流** | 使用 Composer 1.5 进行复杂的多文件重构，具备更好的上下文理解 |
 
 ## 缺点
 
-- **贵** — Pro 价格高，重度用户额度消耗快
-- **额度上限** — 次抛账号总用量约 $65 封顶
+- **价格高** — Pro+ 和 Ultra 套餐对个人开发者来说可能较贵
+- **额度管理** — 需要监控额度使用，避免用完
 
 ## 链接
 

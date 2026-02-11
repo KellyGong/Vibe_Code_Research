@@ -131,9 +131,39 @@ Some relays claim to provide Opus but silently serve a weaker model. Use this **
 | Command / Feature | What It Does |
 |-------------------|--------------|
 | **Subagents** | Claude Code can spawn multiple sub-agents in parallel to handle complex tasks — just describe a multi-part task and it will dispatch agents automatically |
+| **Agent Teams** | Orchestrate multiple Claude Code sessions that coordinate and run work in parallel; enables delegate mode, task assignment/claiming, and team communication for large-scale projects |
 | `/context` | View the current conversation context (what files and info Claude is working with) |
 | `/cost` | Check your usage and token spend for the current session |
 | `/help` | Show all available slash commands |
+
+### Agent Teams (NEW)
+
+**What it is:** Agent Teams allows you to orchestrate multiple independent Claude Code sessions that can:
+
+- **Coordinate & communicate**: Agents can delegate tasks to teammates, claim assigned work, and share progress
+- **Run in parallel**: Multiple agents work simultaneously on different parts of a large project
+- **Maintain context**: Each agent has isolated context while the orchestrator maintains overall project state
+- **Quality gates**: Set up hooks for tests, linting, and checkpoints to save/rewind code state before edits
+
+**Use cases:**
+
+- **Parallel development**: Build different modules/features simultaneously (e.g., frontend + backend + tests)
+- **Code review**: One agent implements while another reviews in parallel
+- **Large refactoring**: Distribute file updates across multiple agents for faster completion
+- **Competing approaches**: Test multiple implementation strategies simultaneously
+
+**How to use:**
+
+Agent Teams can be enabled through experimental settings. The orchestrator manages team lifecycle (start, monitor, shutdown) while individual agents focus on their assigned tasks. You can run agents via tmux or terminal multiplexing for visualization.
+
+**Example workflow:** For a multi-component web app, spawn agents for:
+
+1. Agent A: Build API endpoints
+2. Agent B: Create React components
+3. Agent C: Write integration tests
+4. Agent D: Review and validate all changes
+
+Each agent reports back to the orchestrator, which coordinates the overall build.
 
 ## Pros
 
@@ -274,9 +304,39 @@ export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"
 | 命令 / 功能 | 说明 |
 |-------------|------|
 | **Subagents** | Claude Code 可以并行派生多个子智能体处理复杂任务 — 描述一个多步任务，它会自动分配 agent |
+| **Agent Teams** | 编排多个 Claude Code 会话协同工作并行运行；支持委托模式、任务分配/认领和团队沟通，用于大型项目 |
 | `/context` | 查看当前对话上下文（Claude 正在处理哪些文件和信息） |
 | `/cost` | 查看当前会话的用量与 Token 消耗 |
 | `/help` | 查看所有可用斜杠命令 |
+
+### Agent Teams（新功能）
+
+**功能概述：** Agent Teams 允许你编排多个独立的 Claude Code 会话，它们可以：
+
+- **协调与通信**：智能体可以向队友委托任务、认领分配的工作、共享进度
+- **并行运行**：多个智能体同时处理大型项目的不同部分
+- **维护上下文**：每个智能体拥有独立上下文，而编排器维护整体项目状态
+- **质量关卡**：设置测试、linting 和检查点的钩子，在编辑前保存/回退代码状态
+
+**使用场景：**
+
+- **并行开发**：同时构建不同模块/功能（如前端 + 后端 + 测试）
+- **代码审查**：一个智能体实现功能，另一个并行审查
+- **大型重构**：将文件更新分配给多个智能体以加快完成速度
+- **竞争方案**：同时测试多种实现策略
+
+**如何使用：**
+
+可以通过实验性设置启用 Agent Teams。编排器管理团队生命周期（启动、监控、关闭），而各个智能体专注于分配的任务。可以通过 tmux 或终端复用来可视化运行智能体。
+
+**示例工作流：** 对于多组件 Web 应用，派生智能体分别负责：
+
+1. Agent A：构建 API 端点
+2. Agent B：创建 React 组件
+3. Agent C：编写集成测试
+4. Agent D：审查和验证所有更改
+
+每个智能体向编排器报告，由编排器协调整体构建。
 
 ## 优点
 
