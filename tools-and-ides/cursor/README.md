@@ -58,6 +58,29 @@ Credits are consumed by model use (fast requests cost more). Heavy Agent/Compose
 - **Composer 1.5** — Advanced multi-file editing and planning capabilities
 - **Auto models** — Smart model selection for optimal performance
 
+## Using Custom API Keys (Third-Party Relays)
+
+**Requires: Cursor Pro subscription**
+
+Cursor allows you to configure custom API endpoints (third-party relays) to use your own API keys. This is useful if:
+
+- You want to use a specific API relay with better pricing
+- You have your own OpenAI/Anthropic credits
+- The built-in models are experiencing issues
+
+### Setup
+
+1. Go to **Settings → Models → API Keys** in Cursor
+2. Add your custom API endpoint and key
+
+![Cursor API Configuration Example](fig/cursor_api.png)
+
+### Important Notes
+
+> **⚠️ Tool Call Compatibility:** Some third-party relays have broken tool/function call implementations, which will cause Cursor's Agent/Composer modes to fail. Test with simple tasks first before relying on a relay for complex workflows.
+
+If you encounter errors like "tool call failed" or Agent mode gets stuck, the relay may not fully support OpenAI's tool calling protocol. Switch back to Cursor's built-in endpoints or try a different relay.
+
 ## Usage Tips
 
 | Tip | Description |
@@ -66,6 +89,7 @@ Credits are consumed by model use (fast requests cost more). Heavy Agent/Compose
 | **Network diagnostics** | Go to Settings → Network to run diagnostics and check latency/connectivity issues |
 | **Model selection** | Use Auto mode to let Cursor pick the best model, or manually select for specific tasks |
 | **Composer workflow** | Use Composer 1.5 for complex multi-file refactoring with better context understanding |
+| **Custom API** | Configure third-party relay in Settings → Models → API Keys (requires Pro; test tool call compatibility) |
 
 ## Cons
 
@@ -126,6 +150,29 @@ Cursor 提供多个订阅层级以满足不同需求:
 - **Composer 1.5** — 高级多文件编辑和规划能力
 - **Auto 模型** — 智能模型选择，优化性能
 
+## 使用自定义 API 密钥（第三方中转）
+
+**需要：Cursor Pro 订阅**
+
+Cursor 允许配置自定义 API 端点（第三方中转）来使用你自己的 API 密钥。适用于：
+
+- 使用定价更优的 API 中转
+- 使用自己的 OpenAI/Anthropic 额度
+- 内置模型出现问题时
+
+### 配置方法
+
+1. 进入 Cursor 的 **Settings → Models → API Keys**
+2. 添加自定义 API 端点和密钥
+
+![Cursor API 配置示例](fig/cursor_api.png)
+
+### 重要提示
+
+> **⚠️ Tool Call 兼容性：** 部分第三方中转的 tool/function call 实现有问题，会导致 Cursor 的 Agent/Composer 模式失败。使用前先用简单任务测试，不要直接用于复杂工作流。
+
+如果遇到 "tool call failed" 或 Agent 模式卡住，说明该中转不完全支持 OpenAI 的 tool calling 协议。切换回 Cursor 内置端点或换一个中转。
+
 ## 使用技巧
 
 | 技巧 | 说明 |
@@ -134,6 +181,7 @@ Cursor 提供多个订阅层级以满足不同需求:
 | **网络诊断** | 进入 Settings → Network 运行诊断，检查延迟和连接问题 |
 | **模型选择** | 使用 Auto 模式让 Cursor 选择最佳模型，或针对特定任务手动选择 |
 | **Composer 工作流** | 使用 Composer 1.5 进行复杂的多文件重构，具备更好的上下文理解 |
+| **自定义 API** | 在 Settings → Models → API Keys 配置第三方中转（需 Pro；测试 tool call 兼容性） |
 
 ## 缺点
 
