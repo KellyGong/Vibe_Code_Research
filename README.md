@@ -37,7 +37,7 @@ This repo is a curated collection of **tricks, scripts, tool guides, and workflo
 |---------|---------------|----|
 | 🎸 **[Vibe Coding](./vibe-coding/)** | Awesome Skills (Superpowers, etc.), prompt patterns, workflow automation | [→ vibe-coding/](./vibe-coding/) |
 | 🔬 **[Vibe Research](./vibe-research/)** | Paper search → download → AI summarization → review pipeline | [→ vibe-research/](./vibe-research/) |
-| 🛠️ **[Tools & IDEs](./tools-and-ides/)** | Cursor, Codex, Claude Code, Antigravity — deep dives & comparison | [→ tools-and-ides/](./tools-and-ides/) |
+| 🛠️ **[Tools & IDEs](./tools-and-ides/)** | Cursor, Codex, Claude Code, Antigravity, Warp, Windsurf, Kiro — deep dives & comparison | [→ tools-and-ides/](./tools-and-ides/) |
 
 ## 🗂️ Repository Structure
 
@@ -56,7 +56,10 @@ This repo is a curated collection of **tricks, scripts, tool guides, and workflo
     ├── cursor/                      #   Cursor deep dive
     ├── codex/                       #   OpenAI Codex (Desktop + Extension + CLI)
     ├── claude-code/                 #   Claude Code (terminal agent + API setup)
-    └── antigravity/                 #   Google Antigravity IDE
+    ├── antigravity/                 #   Google Antigravity IDE
+    ├── warp/                        #   Warp (Agentic Terminal / ADE)
+    ├── windsurf/                    #   Windsurf (per-prompt billing, full-power models)
+    └── kiro/                        #   Kiro (cheapest AI IDE, API reverse proxy)
 ```
 
 ## 🚀 Getting Started
@@ -94,7 +97,7 @@ This project is open-sourced for educational and research purposes.
 |------|------|------|
 | 🎸 **[Vibe Coding](./vibe-coding/)** | Awesome Skills（Superpowers 等）、Prompt 模式、工作流自动化 | [→ vibe-coding/](./vibe-coding/) |
 | 🔬 **[Vibe Research](./vibe-research/)** | 论文检索 → 下载 → AI 摘要 → 审阅 全流程 | [→ vibe-research/](./vibe-research/) |
-| 🛠️ **[Tools & IDEs](./tools-and-ides/)** | Cursor、Codex、Claude Code、Antigravity 深度指南与对比 | [→ tools-and-ides/](./tools-and-ides/) |
+| 🛠️ **[Tools & IDEs](./tools-and-ides/)** | Cursor、Codex、Claude Code、Antigravity、Warp、Windsurf、Kiro 深度指南与对比 | [→ tools-and-ides/](./tools-and-ides/) |
 
 ## 🗂️ 仓库结构
 
@@ -113,7 +116,10 @@ This project is open-sourced for educational and research purposes.
     ├── cursor/                      #   Cursor 详解
     ├── codex/                       #   OpenAI Codex（桌面 + 扩展 + CLI）
     ├── claude-code/                 #   Claude Code（终端智能体 + API 配置）
-    └── antigravity/                 #   Google Antigravity IDE
+    ├── antigravity/                 #   Google Antigravity IDE
+    ├── warp/                        #   Warp（智能体终端 / ADE）
+    ├── windsurf/                    #   Windsurf（按 prompt 计费，满血模型）
+    └── kiro/                        #   Kiro（最便宜 AI IDE，API 反代）
 ```
 
 ## 🚀 开始使用
