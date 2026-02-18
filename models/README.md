@@ -16,11 +16,9 @@
 
 ---
 
-<!-- ============================================================ -->
-<!-- ENGLISH -->
-<!-- ============================================================ -->
-
 <details open>
+<summary><b>🇺🇸 English</b></summary>
+
 <summary><h2>API Pricing</h2></summary>
 
 | Model | Input ($/1M) | Output ($/1M) | Cache Write | Cache Read/Hit | Batch Input | Batch Output | Long Context | Notes |
@@ -39,33 +37,7 @@
 
 > **Tip:** All prices are per 1 million tokens. "Cache Write" and "Cache Read/Hit" refer to prompt caching features. "Long Context" shows surcharges for inputs exceeding 200K tokens (format: input/output). Batch pricing applies to asynchronous batch API calls.
 
-</details>
-
-<!-- ============================================================ -->
-<!-- CHINESE -->
-<!-- ============================================================ -->
-
-<details>
-<summary><h2>API 定价</h2></summary>
-
-| 模型 | 输入 ($/1M) | 输出 ($/1M) | Cache 写入 | Cache 读取 | Batch 输入 | Batch 输出 | 长上下文加价 | 备注 |
-|:-----|:-----------:|:-----------:|:----------:|:----------:|:----------:|:----------:|:------------:|:-----|
-| **Claude Opus 4.6** | $5.00 | $25.00 | 5min: $6.25, 1h: $10.00 | $0.50 | $2.50 | $12.50 | >200K: $10/$37.50 | Fast Mode: $30/$150 |
-| **Claude Sonnet 4.6** | $3.00 | $15.00 | 5min: $3.75, 1h: $6.00 | $0.30 | $1.50 | $7.50 | >200K: $6/$22.50 | — |
-| **Claude Opus 4.5** | $5.00 | $25.00 | — | $0.50 | $2.50 | $12.50 | — | 比 Opus 4.1 便宜 67% |
-| **Claude Sonnet 4.5** | $3.00 | $15.00 | $3.75 | $0.30 | $1.50 | $7.50 | >200K: $6/$22.50 | — |
-| **GPT-5.3 Codex** | $1.75 | $14.00 | — | 缓存: $0.175 | — | — | — | 推理 token 按输出计费 |
-| **GPT-5.3 Codex Spark** | — | — | — | — | — | — | — | 研究预览版，暂无 API 定价 |
-| **Gemini 3 Pro** | $2.00 | $12.00 | — | $0.20–0.40 | $1.00 | $6.00 | >200K: $4/$18 | 缓存存储: $4.50/1M/小时 |
-| **Gemini 3 Flash** | $0.50 | $3.00 | — | $0.05 | — | — | — | 音频输入: $1.00 |
-| **GLM-5** | $1.00 | $3.20 | — | — | — | — | — | MIT 开源，可自部署 |
-| **Kimi K2.5** | $0.60 | $3.00 | — | $0.10 | — | — | — | 约为 Claude 定价的 1/40 |
-| **MiniMax M2.5** | $0.30 | $1.10 | — | $0.15 | — | — | — | 约为 Opus 4.6 的 1/10–1/20 |
-
-> **提示：** 所有价格均为每百万 token。"Cache 写入"和"Cache 读取"指提示缓存功能。"长上下文加价"为超过 200K token 输入时的附加费用（格式：输入/输出）。Batch 定价适用于异步批量 API 调用。
-
-</details>
-<!-- ENGLISH -->
+---
 
 ## Subscription Plans & Limits
 
@@ -234,7 +206,162 @@ This section details the subscription tiers, pricing, and request limits for eac
 
 ---
 
-<!-- CHINESE -->
+---
+
+## Model Specifications
+
+| Model | Release | Context | Max Output | Thinking / Reasoning | Multimodal | Architecture | Speed |
+|-------|---------|---------|------------|----------------------|------------|--------------|-------|
+| Claude Opus 4.6 | 2026-02-05 | 200K (1M beta) | 128K | Adaptive: low/medium/high/max | Text + Image | — | — |
+| Claude Sonnet 4.6 | 2026-02-17 | 200K (1M beta) | 64K | Adaptive + Extended Thinking | Text + Image | — | — |
+| Claude Opus 4.5 | 2025-11-24 | 200K (1M beta) | 64K | Extended Thinking, effort adjustable | Text + Image | — | — |
+| Claude Sonnet 4.5 | 2025-09-29 | 200K (1M beta) | 64K | Extended Thinking | Text + Image | — | — |
+| GPT-5.3 Codex | 2026-02-05 | 400K | 128K | Reasoning effort: low/medium/high | Text + Image | — | ~65–70 tok/s |
+| GPT-5.3 Codex Spark | 2026-02-12 | 128K | — | Lightweight reasoning | Text only | Cerebras WSE-3 | 1,000+ tok/s |
+| Gemini 3 Pro | 2025-11-18 | 1M | 64K | Dynamic Thinking (LOW/HIGH), always-on | Text + Image + Audio + Video + PDF | MoE Transformer | — |
+| Gemini 3 Flash | 2025-12-17 | 1M | 64K | Dynamic Thinking (minimal/low/medium/high) | Text + Image + Video + Audio + PDF | — | ~218 tok/s |
+| GLM-5 | 2026-02-11 | 200K | 128K | Reasoning mode (optional) | Text | 744B MoE (44B active), 256 experts, Ascend 910B | ~17–19 tok/s |
+| Kimi K2.5 | 2026-01-27 | 256K | 8K | Thinking / Instant dual mode | Text + Image + Video + PDF | 1T MoE (32B active), 384 experts | — |
+| MiniMax M2.5 | 2026-02-12 | ~205K | Long (w/ CoT) | Reasoning optimized | Text | 230B MoE (10B active) | Standard ~50 tok/s, Lightning ~100 tok/s |
+
+### Key Highlights
+
+- **Gemini 3 Pro / Flash** offer the largest context window at **1M tokens**, with always-on Dynamic Thinking and the broadest multimodal support (text, image, audio, video, PDF).
+- **GPT-5.3 Codex Spark** achieves **1,000+ tok/s** inference speed by running on Cerebras WSE-3 wafer-scale hardware — an order of magnitude faster than any other model listed.
+- **GLM-5** is the only model released under an **MIT open-source license**, built on a 744B MoE architecture running natively on Huawei **Ascend 910B** chips.
+- **Kimi K2.5** fields the largest total parameter count at **1 trillion** (32B active) with 384 experts, while keeping its active footprint small for efficient serving.
+- **Claude Opus 4.6** leads on max output length at **128K tokens** (tied with GPT-5.3 Codex and GLM-5), paired with a new adaptive thinking system offering four granularity levels.
+
+---
+
+---
+
+## Benchmarks
+
+### Coding & Software Engineering
+
+| Benchmark | Opus 4.6 | Sonnet 4.6 | Opus 4.5 | Sonnet 4.5 | GPT-5.3 Codex | Gemini 3 Pro | Gemini 3 Flash | GLM-5 | Kimi 2.5 | MiniMax M2.5 |
+|-----------|----------|------------|----------|------------|---------------|-------------|----------------|-------|----------|--------------|
+| SWE-bench Verified | 80.8% | 79.6% | **80.9%** | 77.2% | — | 76.2% | 78.0% | 77.8% | 76.8% | **80.2%** |
+| Terminal-Bench 2.0 | 65.4% | — | 59.8% | 50.0% | **77.3%** | 56.2% | — | 56.2% | 50.8% | — |
+| OSWorld | — | **72.5%** | 66.3% | 61.4% | 64.7% | — | — | — | — | — |
+| LiveCodeBench | — | — | — | — | — | — | **90.8%** | — | 85.0% | — |
+
+### Reasoning & Knowledge
+
+| Benchmark | Opus 4.6 | Sonnet 4.6 | GPT-5.3 Codex | Gemini 3 Pro | Gemini 3 Flash | GLM-5 | Kimi 2.5 |
+|-----------|----------|------------|---------------|-------------|----------------|-------|----------|
+| GPQA Diamond | ~77% | 89.9% | 73.8% | **91.9%** | 90.4% | 68–86% | 87.6% |
+| MMLU / MMLU-Pro | 85.1% | 89.3% | — | **92%** | — | — | 87.1% |
+| ARC-AGI-2 | **68.8%** | 58.3% | — | 31–45% | 33.6% | — | — |
+| Humanity's Last Exam | 40–53% | 33–49% | — | 38–46% | 33.7% | **50.4%** | **50.2%** |
+| AIME 2025 | ~94% | — | — | 95–100% | **99.7%** | 88.7% | 96.1% |
+
+### Analysis
+
+On **SWE-bench Verified**, Opus 4.5 (80.9%), Opus 4.6 (80.8%), and MiniMax M2.5 (80.2%) form the top tier at ~80%, while Gemini 3 Flash (78.0%) surprisingly outperforms Gemini 3 Pro (76.2%). **Terminal-Bench 2.0** is dominated by GPT-5.3 Codex at 77.3%, a full 12 points ahead of the next competitor. In **reasoning**, the landscape fragments: Opus 4.6 leads ARC-AGI-2 at 68.8% (nearly doubling its predecessor); Gemini 3 Pro tops GPQA Diamond (91.9%) and MMLU (92%); GLM-5 and Kimi K2.5 share the lead on Humanity's Last Exam (~50%). For **long context**, Opus 4.6 achieves ~76% on MRCR v2 at 1M tokens, while the Gemini 3 series offers 1M context natively across both Pro and Flash.
+
+---
+
+## User Reviews
+
+### Claude Opus 4.6
+
+- 👍 "Like a senior engineer handling million-line codebase migrations" — SentinelOne. ARC-AGI-2 score nearly doubled from 4.5. The 1M context beta fundamentally changes how teams approach large-repo refactors and cross-file reasoning.
+- 👎 Writing quality described as "flatter" than Opus 4.5 — less creative prose, more mechanical output. Overconfident behavior: executes destructive actions without confirmation. Pro users report hitting rate limits within 2–3 hours of heavy use. An API regression incident on Feb 10–11 caused widespread disruption.
+
+### Claude Sonnet 4.6
+
+- 👍 "Opus 4.5 at Sonnet pricing" — Reddit consensus. 70% preferred over Sonnet 4.5 in Claude Code internal testing. OSWorld score of 72.5% is the highest among all models tested.
+- 👎 Complex multi-step tasks still require Opus-tier models. Some developers report higher token consumption in the 4.6 series compared to 4.5, partially offsetting cost savings.
+
+### Claude Opus 4.5
+
+- 👍 First model to break 80% on SWE-bench Verified. "It just gets it" for architecture patterns and large-scale refactoring — Reddit r/ClaudeCode. Token efficiency is best-in-class among frontier models.
+- 👎 Over-autonomous tendencies: rewrites entire architecture without asking, over-documents code with excessive comments. Users report "memory anxiety" as the model approaches thinking token limits, leading to rushed or truncated outputs.
+
+### Claude Sonnet 4.5
+
+- 👍 Replit reported code edit error rate dropped from 9% to 0% after switching. "Like pairing with a senior engineer" — Skywork AI. Strong balance of speed and quality for everyday coding tasks.
+- 👎 "Confidently lies about having read the docs" — Reddit r/cursor. Weak long-context retrieval: only 18.5% accuracy at 256K tokens. Many users feel it is "not a huge upgrade" over Sonnet 4, especially for non-coding tasks.
+
+### GPT-5.3 Codex
+
+- 👍 "Start a task, leave for hours, come back to working software" — Matt Shumer. Terminal-Bench #1 at 77.3%. Community consensus: use Opus for planning and architecture, Codex for parallel execution of well-defined tasks.
+- 👎 Silent routing to GPT-5.2 reported by multiple users during peak hours. Spark mode: "rarely logic errors but adds junk code and unnecessary abstractions." One user spent $100 on Opus credits specifically to clean up a Codex-generated dashboard.
+
+### Gemini 3 Pro
+
+- 👍 Initially hailed as "clearly superior to GPT-5.2 and Opus 4.5" — Reddit. GPQA Diamond 91.9% is the highest single-model score. Scaffolding, refactoring, and structured output praised by enterprise users.
+- 👎 Long context quality degrades noticeably after 50K tokens despite 1M window. Rate limits slashed post-launch (RPM −67%, RPD −80%). "API frequently becomes unavailable during US business hours." Hallucinations on niche or domain-specific topics remain a concern.
+
+### Gemini 3 Flash
+
+- 👍 "The Budget Model That Became My Default" — popular blog post title. 218 tok/s output speed, 1.7× faster than GPT-5.2. SWE-bench 78.0% beats Gemini 3 Pro (76.2%), a rare case of a smaller model outperforming its larger sibling on agentic coding.
+- 👎 Hallucination rate measured at ~91% on Vectara benchmark. Free-tier quota slashed from 250 to 20 RPD. "Cannot stop outputting code comments" — developers report excessive inline documentation that inflates token usage.
+
+### GLM-5
+
+- 👍 Humanity's Last Exam 50.4% beats GPT-5.2 and Opus 4.5. Hallucination rate of 34% is the industry lowest on Vectara benchmark. "Lightyears better than GLM-4.7" — Reddit. Fully MIT open-source with zero NVIDIA dependency (runs on Ascend NPUs).
+- 👎 Slow inference at 17–19 tok/s. Agent-mode coding still lags behind closed-source models on complex multi-file tasks. Requires more precise and structured prompts than Claude to achieve best results.
+
+### Kimi K2.5
+
+- 👍 Visual coding workflow praised — screenshot or screencast to working code. OCRBench 92.3% is the highest among all models. Agent Swarm supports up to 100 concurrent agents. Pricing at ~1/40 of Claude makes it accessible for high-volume use.
+- 👎 "Wrote code with it for a week, verdict: not good" — V2EX user review. 0% output consistency at temperature=0 (determinism issues). Logic confusion reported: one user's agent accidentally git-rolled back an entire codebase. Inference speed is slow for interactive use.
+
+### MiniMax M2.5
+
+- 👍 SWE-bench Verified 80.2% — SOTA among non-Anthropic models. "Intelligence too cheap to meter" — output pricing at $1.10/1M tokens. Lightning mode at 100 tok/s. MiniMax reports 30% of internal company tasks now handled by M2.5.
+- 👎 Hallucination benchmark score of 88% places it at the 36th percentile. Complex coding tasks show inconsistency across runs. Instruction following at 65% (68th percentile) means it occasionally ignores constraints or formatting requirements.
+
+---
+
+## Selection Guide
+
+| Use Case | Recommended Models |
+|----------|-------------------|
+| Long context + deep reasoning | Claude Opus 4.6 (1M beta), Gemini 3 Pro |
+| Coding + agent execution | GPT-5.3 Codex, Claude Opus 4.6, MiniMax M2.5 |
+| Cost-effective coding | Gemini 3 Flash, Sonnet 4.6, GLM-5, MiniMax M2.5 |
+| Fast iteration / frontend | GPT-5.3 Codex Spark, Kimi K2.5 (visual coding) |
+| Open-source / self-deploy | GLM-5, Kimi K2.5, MiniMax M2.5 |
+| Document / OCR / multimodal | Kimi K2.5, Gemini 3 series |
+
+## Notes
+
+- Pricing and quotas are subject to change; always check official documentation for the latest information.
+- Benchmark scores vary by evaluation setup, including pass@k settings, tool availability, and thinking budget levels.
+- User reviews sourced from Reddit, Hacker News, 知乎, V2EX, and 掘金 — these reflect subjective individual experiences and may not generalize.
+
+---
+
+</details>
+
+---
+
+<details>
+<summary><b>🇨🇳 中文</b></summary>
+
+<summary><h2>API 定价</h2></summary>
+
+| 模型 | 输入 ($/1M) | 输出 ($/1M) | Cache 写入 | Cache 读取 | Batch 输入 | Batch 输出 | 长上下文加价 | 备注 |
+|:-----|:-----------:|:-----------:|:----------:|:----------:|:----------:|:----------:|:------------:|:-----|
+| **Claude Opus 4.6** | $5.00 | $25.00 | 5min: $6.25, 1h: $10.00 | $0.50 | $2.50 | $12.50 | >200K: $10/$37.50 | Fast Mode: $30/$150 |
+| **Claude Sonnet 4.6** | $3.00 | $15.00 | 5min: $3.75, 1h: $6.00 | $0.30 | $1.50 | $7.50 | >200K: $6/$22.50 | — |
+| **Claude Opus 4.5** | $5.00 | $25.00 | — | $0.50 | $2.50 | $12.50 | — | 比 Opus 4.1 便宜 67% |
+| **Claude Sonnet 4.5** | $3.00 | $15.00 | $3.75 | $0.30 | $1.50 | $7.50 | >200K: $6/$22.50 | — |
+| **GPT-5.3 Codex** | $1.75 | $14.00 | — | 缓存: $0.175 | — | — | — | 推理 token 按输出计费 |
+| **GPT-5.3 Codex Spark** | — | — | — | — | — | — | — | 研究预览版，暂无 API 定价 |
+| **Gemini 3 Pro** | $2.00 | $12.00 | — | $0.20–0.40 | $1.00 | $6.00 | >200K: $4/$18 | 缓存存储: $4.50/1M/小时 |
+| **Gemini 3 Flash** | $0.50 | $3.00 | — | $0.05 | — | — | — | 音频输入: $1.00 |
+| **GLM-5** | $1.00 | $3.20 | — | — | — | — | — | MIT 开源，可自部署 |
+| **Kimi K2.5** | $0.60 | $3.00 | — | $0.10 | — | — | — | 约为 Claude 定价的 1/40 |
+| **MiniMax M2.5** | $0.30 | $1.10 | — | $0.15 | — | — | — | 约为 Opus 4.6 的 1/10–1/20 |
+
+> **提示：** 所有价格均为每百万 token。"Cache 写入"和"Cache 读取"指提示缓存功能。"长上下文加价"为超过 200K token 输入时的附加费用（格式：输入/输出）。Batch 定价适用于异步批量 API 调用。
+
+---
 
 ## 订阅计划与请求限制
 
@@ -400,35 +527,8 @@ This section details the subscription tiers, pricing, and request limits for eac
 - **Pay as You Go（按量付费）** 是默认计费模式——按消耗的 Token 付费，无最低消费，非常适合工作负载不稳定的场景。
 - **Coding Plan（编程计划）** 是面向开发者的订阅，提供对 MiniMax 编程优化模型（M2.5、M2.1、M2）的专属访问，享有更高速率限制和优先排队。
 - **Audio Subscription（音频订阅）** 根据使用量从 $5/月到 $999/月不等，涵盖文本转语音、语音转文本和语音克隆功能。
-<!-- ENGLISH -->
-
-## Model Specifications
-
-| Model | Release | Context | Max Output | Thinking / Reasoning | Multimodal | Architecture | Speed |
-|-------|---------|---------|------------|----------------------|------------|--------------|-------|
-| Claude Opus 4.6 | 2026-02-05 | 200K (1M beta) | 128K | Adaptive: low/medium/high/max | Text + Image | — | — |
-| Claude Sonnet 4.6 | 2026-02-17 | 200K (1M beta) | 64K | Adaptive + Extended Thinking | Text + Image | — | — |
-| Claude Opus 4.5 | 2025-11-24 | 200K (1M beta) | 64K | Extended Thinking, effort adjustable | Text + Image | — | — |
-| Claude Sonnet 4.5 | 2025-09-29 | 200K (1M beta) | 64K | Extended Thinking | Text + Image | — | — |
-| GPT-5.3 Codex | 2026-02-05 | 400K | 128K | Reasoning effort: low/medium/high | Text + Image | — | ~65–70 tok/s |
-| GPT-5.3 Codex Spark | 2026-02-12 | 128K | — | Lightweight reasoning | Text only | Cerebras WSE-3 | 1,000+ tok/s |
-| Gemini 3 Pro | 2025-11-18 | 1M | 64K | Dynamic Thinking (LOW/HIGH), always-on | Text + Image + Audio + Video + PDF | MoE Transformer | — |
-| Gemini 3 Flash | 2025-12-17 | 1M | 64K | Dynamic Thinking (minimal/low/medium/high) | Text + Image + Video + Audio + PDF | — | ~218 tok/s |
-| GLM-5 | 2026-02-11 | 200K | 128K | Reasoning mode (optional) | Text | 744B MoE (44B active), 256 experts, Ascend 910B | ~17–19 tok/s |
-| Kimi K2.5 | 2026-01-27 | 256K | 8K | Thinking / Instant dual mode | Text + Image + Video + PDF | 1T MoE (32B active), 384 experts | — |
-| MiniMax M2.5 | 2026-02-12 | ~205K | Long (w/ CoT) | Reasoning optimized | Text | 230B MoE (10B active) | Standard ~50 tok/s, Lightning ~100 tok/s |
-
-### Key Highlights
-
-- **Gemini 3 Pro / Flash** offer the largest context window at **1M tokens**, with always-on Dynamic Thinking and the broadest multimodal support (text, image, audio, video, PDF).
-- **GPT-5.3 Codex Spark** achieves **1,000+ tok/s** inference speed by running on Cerebras WSE-3 wafer-scale hardware — an order of magnitude faster than any other model listed.
-- **GLM-5** is the only model released under an **MIT open-source license**, built on a 744B MoE architecture running natively on Huawei **Ascend 910B** chips.
-- **Kimi K2.5** fields the largest total parameter count at **1 trillion** (32B active) with 384 experts, while keeping its active footprint small for efficient serving.
-- **Claude Opus 4.6** leads on max output length at **128K tokens** (tied with GPT-5.3 Codex and GLM-5), paired with a new adaptive thinking system offering four granularity levels.
 
 ---
-
-<!-- CHINESE -->
 
 ## 模型规格对比
 
@@ -453,109 +553,8 @@ This section details the subscription tiers, pricing, and request limits for eac
 - **GLM-5** 是唯一以 **MIT 开源协议** 发布的模型，采用 744B MoE 架构，原生运行于华为**昇腾 910B** 芯片。
 - **Kimi K2.5** 总参数量达 **1 万亿**（32B 激活），拥有 384 个专家，在保持高效推理的同时实现了最大的模型规模。
 - **Claude Opus 4.6** 最大输出长度达 **128K token**（与 GPT-5.3 Codex 和 GLM-5 并列），并引入四档自适应思考系统。
-<!-- ENGLISH -->
-
-## Benchmarks
-
-### Coding & Software Engineering
-
-| Benchmark | Opus 4.6 | Sonnet 4.6 | Opus 4.5 | Sonnet 4.5 | GPT-5.3 Codex | Gemini 3 Pro | Gemini 3 Flash | GLM-5 | Kimi 2.5 | MiniMax M2.5 |
-|-----------|----------|------------|----------|------------|---------------|-------------|----------------|-------|----------|--------------|
-| SWE-bench Verified | 80.8% | 79.6% | **80.9%** | 77.2% | — | 76.2% | 78.0% | 77.8% | 76.8% | **80.2%** |
-| Terminal-Bench 2.0 | 65.4% | — | 59.8% | 50.0% | **77.3%** | 56.2% | — | 56.2% | 50.8% | — |
-| OSWorld | — | **72.5%** | 66.3% | 61.4% | 64.7% | — | — | — | — | — |
-| LiveCodeBench | — | — | — | — | — | — | **90.8%** | — | 85.0% | — |
-
-### Reasoning & Knowledge
-
-| Benchmark | Opus 4.6 | Sonnet 4.6 | GPT-5.3 Codex | Gemini 3 Pro | Gemini 3 Flash | GLM-5 | Kimi 2.5 |
-|-----------|----------|------------|---------------|-------------|----------------|-------|----------|
-| GPQA Diamond | ~77% | 89.9% | 73.8% | **91.9%** | 90.4% | 68–86% | 87.6% |
-| MMLU / MMLU-Pro | 85.1% | 89.3% | — | **92%** | — | — | 87.1% |
-| ARC-AGI-2 | **68.8%** | 58.3% | — | 31–45% | 33.6% | — | — |
-| Humanity's Last Exam | 40–53% | 33–49% | — | 38–46% | 33.7% | **50.4%** | **50.2%** |
-| AIME 2025 | ~94% | — | — | 95–100% | **99.7%** | 88.7% | 96.1% |
-
-### Analysis
-
-On **SWE-bench Verified**, Opus 4.5 (80.9%), Opus 4.6 (80.8%), and MiniMax M2.5 (80.2%) form the top tier at ~80%, while Gemini 3 Flash (78.0%) surprisingly outperforms Gemini 3 Pro (76.2%). **Terminal-Bench 2.0** is dominated by GPT-5.3 Codex at 77.3%, a full 12 points ahead of the next competitor. In **reasoning**, the landscape fragments: Opus 4.6 leads ARC-AGI-2 at 68.8% (nearly doubling its predecessor); Gemini 3 Pro tops GPQA Diamond (91.9%) and MMLU (92%); GLM-5 and Kimi K2.5 share the lead on Humanity's Last Exam (~50%). For **long context**, Opus 4.6 achieves ~76% on MRCR v2 at 1M tokens, while the Gemini 3 series offers 1M context natively across both Pro and Flash.
 
 ---
-
-## User Reviews
-
-### Claude Opus 4.6
-
-- 👍 "Like a senior engineer handling million-line codebase migrations" — SentinelOne. ARC-AGI-2 score nearly doubled from 4.5. The 1M context beta fundamentally changes how teams approach large-repo refactors and cross-file reasoning.
-- 👎 Writing quality described as "flatter" than Opus 4.5 — less creative prose, more mechanical output. Overconfident behavior: executes destructive actions without confirmation. Pro users report hitting rate limits within 2–3 hours of heavy use. An API regression incident on Feb 10–11 caused widespread disruption.
-
-### Claude Sonnet 4.6
-
-- 👍 "Opus 4.5 at Sonnet pricing" — Reddit consensus. 70% preferred over Sonnet 4.5 in Claude Code internal testing. OSWorld score of 72.5% is the highest among all models tested.
-- 👎 Complex multi-step tasks still require Opus-tier models. Some developers report higher token consumption in the 4.6 series compared to 4.5, partially offsetting cost savings.
-
-### Claude Opus 4.5
-
-- 👍 First model to break 80% on SWE-bench Verified. "It just gets it" for architecture patterns and large-scale refactoring — Reddit r/ClaudeCode. Token efficiency is best-in-class among frontier models.
-- 👎 Over-autonomous tendencies: rewrites entire architecture without asking, over-documents code with excessive comments. Users report "memory anxiety" as the model approaches thinking token limits, leading to rushed or truncated outputs.
-
-### Claude Sonnet 4.5
-
-- 👍 Replit reported code edit error rate dropped from 9% to 0% after switching. "Like pairing with a senior engineer" — Skywork AI. Strong balance of speed and quality for everyday coding tasks.
-- 👎 "Confidently lies about having read the docs" — Reddit r/cursor. Weak long-context retrieval: only 18.5% accuracy at 256K tokens. Many users feel it is "not a huge upgrade" over Sonnet 4, especially for non-coding tasks.
-
-### GPT-5.3 Codex
-
-- 👍 "Start a task, leave for hours, come back to working software" — Matt Shumer. Terminal-Bench #1 at 77.3%. Community consensus: use Opus for planning and architecture, Codex for parallel execution of well-defined tasks.
-- 👎 Silent routing to GPT-5.2 reported by multiple users during peak hours. Spark mode: "rarely logic errors but adds junk code and unnecessary abstractions." One user spent $100 on Opus credits specifically to clean up a Codex-generated dashboard.
-
-### Gemini 3 Pro
-
-- 👍 Initially hailed as "clearly superior to GPT-5.2 and Opus 4.5" — Reddit. GPQA Diamond 91.9% is the highest single-model score. Scaffolding, refactoring, and structured output praised by enterprise users.
-- 👎 Long context quality degrades noticeably after 50K tokens despite 1M window. Rate limits slashed post-launch (RPM −67%, RPD −80%). "API frequently becomes unavailable during US business hours." Hallucinations on niche or domain-specific topics remain a concern.
-
-### Gemini 3 Flash
-
-- 👍 "The Budget Model That Became My Default" — popular blog post title. 218 tok/s output speed, 1.7× faster than GPT-5.2. SWE-bench 78.0% beats Gemini 3 Pro (76.2%), a rare case of a smaller model outperforming its larger sibling on agentic coding.
-- 👎 Hallucination rate measured at ~91% on Vectara benchmark. Free-tier quota slashed from 250 to 20 RPD. "Cannot stop outputting code comments" — developers report excessive inline documentation that inflates token usage.
-
-### GLM-5
-
-- 👍 Humanity's Last Exam 50.4% beats GPT-5.2 and Opus 4.5. Hallucination rate of 34% is the industry lowest on Vectara benchmark. "Lightyears better than GLM-4.7" — Reddit. Fully MIT open-source with zero NVIDIA dependency (runs on Ascend NPUs).
-- 👎 Slow inference at 17–19 tok/s. Agent-mode coding still lags behind closed-source models on complex multi-file tasks. Requires more precise and structured prompts than Claude to achieve best results.
-
-### Kimi K2.5
-
-- 👍 Visual coding workflow praised — screenshot or screencast to working code. OCRBench 92.3% is the highest among all models. Agent Swarm supports up to 100 concurrent agents. Pricing at ~1/40 of Claude makes it accessible for high-volume use.
-- 👎 "Wrote code with it for a week, verdict: not good" — V2EX user review. 0% output consistency at temperature=0 (determinism issues). Logic confusion reported: one user's agent accidentally git-rolled back an entire codebase. Inference speed is slow for interactive use.
-
-### MiniMax M2.5
-
-- 👍 SWE-bench Verified 80.2% — SOTA among non-Anthropic models. "Intelligence too cheap to meter" — output pricing at $1.10/1M tokens. Lightning mode at 100 tok/s. MiniMax reports 30% of internal company tasks now handled by M2.5.
-- 👎 Hallucination benchmark score of 88% places it at the 36th percentile. Complex coding tasks show inconsistency across runs. Instruction following at 65% (68th percentile) means it occasionally ignores constraints or formatting requirements.
-
----
-
-## Selection Guide
-
-| Use Case | Recommended Models |
-|----------|-------------------|
-| Long context + deep reasoning | Claude Opus 4.6 (1M beta), Gemini 3 Pro |
-| Coding + agent execution | GPT-5.3 Codex, Claude Opus 4.6, MiniMax M2.5 |
-| Cost-effective coding | Gemini 3 Flash, Sonnet 4.6, GLM-5, MiniMax M2.5 |
-| Fast iteration / frontend | GPT-5.3 Codex Spark, Kimi K2.5 (visual coding) |
-| Open-source / self-deploy | GLM-5, Kimi K2.5, MiniMax M2.5 |
-| Document / OCR / multimodal | Kimi K2.5, Gemini 3 series |
-
-## Notes
-
-- Pricing and quotas are subject to change; always check official documentation for the latest information.
-- Benchmark scores vary by evaluation setup, including pass@k settings, tool availability, and thinking budget levels.
-- User reviews sourced from Reddit, Hacker News, 知乎, V2EX, and 掘金 — these reflect subjective individual experiences and may not generalize.
-
----
-
-<!-- CHINESE -->
 
 ## 基准测试性能
 
@@ -654,6 +653,10 @@ On **SWE-bench Verified**, Opus 4.5 (80.9%), Opus 4.6 (80.8%), and MiniMax M2.5 
 - 定价和配额随时可能变动，请以官方文档为准。
 - 基准测试分数因评估设置而异，包括 pass@k 设置、工具可用性和思考预算级别。
 - 用户评价来源于 Reddit、Hacker News、知乎、V2EX 和掘金 — 均为主观个人体验，不一定具有普遍代表性。
+
+</details>
+
+---
 
 ---
 
