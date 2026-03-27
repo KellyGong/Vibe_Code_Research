@@ -86,11 +86,15 @@ Consider a typical Claude Code working session: **20 interactions** over 2–3 h
 
 | | ① No cache | ② API with cache | ③ Subscription |
 |---|:---:|:---:|:---:|
-| **Input cost** | **$10.40** | **$2.13** | **$0 (free cache read)** |
-| **Output cost** | **$0.25** | **$0.25** | **$0.25 (counts toward quota)** |
-| **Total** | **$10.65** | **$2.38** | **$0.25** |
+| **Cache write cost** | — | **$1.13** (180K × $6.25/M) | included |
+| **Cache read cost** | — | **$0.95** (1,900K × $0.50/M) | **free** |
+| **Regular input cost** | **$10.40** (2,080K × $5/M) | — | included |
+| **Output cost** | **$0.25** | **$0.25** | **$0.25** (consumes quota) |
+| **Total** | **$10.65** | **$2.33** | **$0.25** |
 
-One working session: **$10.65 without cache**, **$2.38 with API cache**, **$0.25 on subscription** (only output consumes quota). Over a full workday (3–4 sessions), that's $32–43 / $7–10 / $0.75–1.00 respectively.
+> ② Cache breakdown: first interaction writes all 28K tokens; each subsequent interaction reads the cached prefix (growing from 28K→172K) and writes the new 8K tokens. Total write = 180K, total read = 1,900K.
+
+One working session: **$10.65 without cache**, **$2.33 with API cache**, **$0.25 on subscription** (only output consumes quota). Over a full workday (3–4 sessions), that's $32–43 / $7–10 / $0.75–1.00 respectively.
 
 The Pro plan costs $20/month but provides roughly **~$300/month in equivalent API token value**. Since cache reads are free on subscription, the more you interact (which is Claude Code's nature — frequent tool calls, long context), the more value you extract. Heavy users easily get $400–500+ equivalent.
 
@@ -425,11 +429,15 @@ Pro 计划的 **cache 保留时间为 5 分钟**。工作原理：
 
 | | ① 无 cache | ② API 有 cache | ③ 订阅 |
 |---|:---:|:---:|:---:|
-| **Input 成本** | **$10.40** | **$2.13** | **$0（cache read 免费）** |
-| **Output 成本** | **$0.25** | **$0.25** | **$0.25（消耗额度）** |
-| **总计** | **$10.65** | **$2.38** | **$0.25** |
+| **Cache write 成本** | — | **$1.13**（180K × $6.25/M） | 包含 |
+| **Cache read 成本** | — | **$0.95**（1,900K × $0.50/M） | **免费** |
+| **常规 input 成本** | **$10.40**（2,080K × $5/M） | — | 包含 |
+| **Output 成本** | **$0.25** | **$0.25** | **$0.25**（消耗额度） |
+| **总计** | **$10.65** | **$2.33** | **$0.25** |
 
-一次工作会话：无 cache 需 **$10.65**，API 有 cache 需 **$2.38**，**订阅仅 $0.25**（只有 output 消耗额度）。一天高强度工作 3–4 个会话，三种场景分别为 $32–43 / $7–10 / $0.75–1.00。
+> ② Cache 明细：第一次交互写入全部 28K tokens；后续每次交互读取已缓存前缀（从 28K 增长到 172K）并写入新增的 8K tokens。总写入 = 180K，总读取 = 1,900K。
+
+一次工作会话：无 cache 需 **$10.65**，API 有 cache 需 **$2.33**，**订阅仅 $0.25**（只有 output 消耗额度）。一天高强度工作 3–4 个会话，三种场景分别为 $32–43 / $7–10 / $0.75–1.00。
 
 Pro 计划每月 $20，但提供大约 **~$300/月的等值 API token 额度**。由于订阅下 cache read 免费，交互越频繁（Claude Code 的常态 — 高频 tool call、长上下文），实际获得的价值就越高。重度用户轻松可达 $400–500+ 等值的 API 使用量。
 
