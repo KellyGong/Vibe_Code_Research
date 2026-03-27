@@ -28,6 +28,62 @@
 
 You can stick to the official product or bring your own API key via third-party setups for better cost/performance.
 
+### Official Subscription (Strongly Recommended)
+
+If you don't mind the subscription process, **we strongly recommend subscribing to the official plan**. Key advantages:
+
+1. **Official & stable** — No model faking, guaranteed authentic Opus/Sonnet
+2. **Cutting-edge features first** — Access the latest capabilities (Agent Teams, `/loop`, co-workers, etc.) as soon as they ship
+3. **1M context window by default** — All models come with 1M context at no extra charge; even when usage exceeds 200K tokens, you still pay the same subscription price
+4. **Higher effective quota** — Thanks to prompt caching, your subscription dollar stretches much further than third-party relay credits
+
+#### Pro ($20/month)
+
+The Pro plan unlocks **Claude Code** and access to the **Opus** model.
+
+**Co-Workers:** Pro subscribers can also use [Co-Workers (Background Agents)](https://docs.anthropic.com/en/docs/claude-code/co-workers) — autonomous agents that run tasks in the background (e.g., fixing bugs, implementing features) while you continue working. They operate in sandboxed environments and report back when done.
+
+**Rate limits:** Claude Code rate limits are calculated on a **rolling 5-hour window** plus a **weekly cap**.
+
+**Prompt caching & cost efficiency:**
+
+Claude Code maintains a **5-minute cache TTL** on Pro. Here's how it works:
+
+- The first request in a conversation does a **cache write** (stores your context)
+- Every subsequent request does a **cache read**, which resets the 5-minute timer
+- As long as you keep interacting within 5 minutes, the cache stays warm indefinitely
+
+On the subscription plan, **cache reads are free** (on API billing, cache reads cost 0.1× the normal input price). This makes a massive difference for Claude Code's high-intensity workflow with long contexts and frequent tool calls.
+
+**Example calculation (200K context, Opus):**
+
+| | API billing (per request) | Subscription |
+|---|---|---|
+| Input tokens (200K) | $3.00 (@ $15/M) | Included |
+| Cache read (200K) | $0.30 (@ $1.5/M, 0.1×) | **Free** |
+| Output tokens (500) | $0.04 (@ $75/M) | Included |
+| **Typical request cost** | **~$0.34** (cache hit) / **$3.04** (cold) | **$0** |
+
+In a typical Claude Code session with 200K context, after the initial cache write, each subsequent interaction costs ~$0.34 on API billing. Over a busy day with 100+ interactions, that's $34+ in API fees — but **$0 extra on subscription**.
+
+The Pro plan costs $20/month but provides roughly **~$300/month in equivalent API token value**. This fluctuates based on cache hit rate — the more cache reads (which is the norm for Claude Code), the more value you extract. Heavy users can easily get $400–500+ worth of equivalent API usage.
+
+#### Max ($100/month × 5 or $200/month × 20)
+
+Max subscriptions dramatically increase your rate limits compared to Pro:
+
+| | Pro ($20) | Max ×5 ($100) | Max ×20 ($200) |
+|---|---|---|---|
+| **5-hour window** | 1× | **6×** | **21×** |
+| **Weekly cap** | 1× | **8.33×** | **16.67×** |
+| **Cache TTL** | 5 min | **1 hour** | **1 hour** |
+
+The **1-hour cache TTL** on Max is a game-changer. You can step away for 50 minutes, come back, and your entire conversation context is still cached — no expensive cache write needed. This is especially powerful for the `/loop` command running overnight: the 10-minute loop interval is well within the 1-hour cache window, so virtually every iteration is a free cache read.
+
+**Effective weekly value:** Under heavy cache-read workloads, Max ×20's weekly quota can approach **~$1,500+ in equivalent API value** — and even higher with sustained cache hits. That's roughly **7.5× the subscription cost** in raw API terms, making it extraordinarily cost-effective for power users.
+
+Max subscribers also get access to all the latest features, same as Pro.
+
 ### Third-Party API Relay Setup
 
 A recommended relay service: **[OneFun](https://onefun.top/console/token)** — register and get your token on the console page.
@@ -284,6 +340,62 @@ Stop when validation loss < 0.35 is achieved or all 20 configurations have been 
 | **第三方 API 中转** | 通过中转服务调用 Claude API，往往 **性价比高** 且灵活 |
 
 可选择官方订阅，或通过第三方配置自带 API，在成本与性能之间取得平衡。
+
+### 官方订阅（强烈推荐）
+
+如果不怕订阅流程的麻烦，**强烈推荐订阅官方会员**。核心优势：
+
+1. **官方稳定** — 不存在模型造假，保证使用正版 Opus/Sonnet
+2. **抢先体验最新功能** — Agent Teams、`/loop`、Co-Workers 等新功能第一时间可用
+3. **默认 1M 上下文窗口** — 所有模型上下文均为 1M，加量不加价；即使使用超过 200K tokens，仍按原订阅价收费
+4. **额度更高** — 得益于 prompt caching 机制，订阅的实际可用额度远超第三方中转平台
+
+#### Pro（$20/月）
+
+Pro 计划解锁 **Claude Code** 和 **Opus** 模型访问权限。
+
+**Co-Workers（协作智能体）：** Pro 订阅者还可以使用 [Co-Workers（后台智能体）](https://docs.anthropic.com/en/docs/claude-code/co-workers) — 在后台自主运行任务（如修 bug、实现功能）的智能体，在沙盒环境中独立工作，完成后向你报告结果。
+
+**速率限制：** Claude Code 的速率限制按 **5 小时滚动窗口** 加 **每周上限** 计算。
+
+**Prompt caching 与成本效率：**
+
+Pro 计划的 **cache 保留时间为 5 分钟**。工作原理：
+
+- 对话中的第一次请求执行 **cache write**（写入上下文缓存）
+- 之后每次请求都是 **cache read**，并重置 5 分钟计时器
+- 只要在 5 分钟内持续交互，cache 就会一直保持热状态
+
+在订阅计划中，**cache read 完全免费**（API 计费模式下 cache read 收取正常 input 价格的 0.1 倍）。这对 Claude Code 这种长上下文、高频 tool call 的高强度使用场景影响巨大。
+
+**成本计算示例（200K 上下文，Opus）：**
+
+| | API 计费（每次请求） | 订阅计划 |
+|---|---|---|
+| Input tokens（200K） | $3.00（@ $15/M） | 包含 |
+| Cache read（200K） | $0.30（@ $1.5/M，0.1×） | **免费** |
+| Output tokens（500） | $0.04（@ $75/M） | 包含 |
+| **典型单次请求成本** | **~$0.34**（命中缓存）/ **$3.04**（冷启动） | **$0** |
+
+在典型的 Claude Code 会话中（200K 上下文），初始 cache write 之后，每次后续交互在 API 计费下需 ~$0.34。一天高强度使用 100+ 次交互，就是 $34+ 的 API 费用 — 但 **订阅用户额外成本为 $0**。
+
+Pro 计划每月 $20，但提供大约 **~$300/月的等值 API token 额度**。这个数字会根据 cache 命中率浮动 — cache read 越多（这在 Claude Code 中是常态），你获得的实际价值就越高。重度用户轻松可以获得 $400–500+ 等值的 API 使用量。
+
+#### Max（$100/月 ×5 或 $200/月 ×20）
+
+Max 订阅大幅提升速率限制：
+
+| | Pro ($20) | Max ×5 ($100) | Max ×20 ($200) |
+|---|---|---|---|
+| **5 小时窗口** | 1× | **6×** | **21×** |
+| **每周上限** | 1× | **8.33×** | **16.67×** |
+| **Cache 保留时间** | 5 分钟 | **1 小时** | **1 小时** |
+
+Max 的 **1 小时 cache 保留时间**是质变。你可以离开 50 分钟再回来，整个对话上下文仍然在缓存中 — 不需要昂贵的 cache write。这对 `/loop` 命令通宵运行尤其强大：10 分钟的 loop 间隔远在 1 小时 cache 窗口内，几乎每次迭代都是免费的 cache read。
+
+**每周实际价值：** 在大量 cache read 的工作负载下，Max ×20 的每周额度可以逼近 **~$1,500+ 等值 API 价值** — 持续高 cache 命中率时甚至更高。这大约是订阅成本的 **7.5 倍**，对重度用户来说性价比极高。
+
+Max 订阅者同样可以使用所有最新功能。
 
 ### 第三方 API 中转配置
 
