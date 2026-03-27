@@ -132,6 +132,8 @@ Some relays claim to provide Opus but silently serve a weaker model. Use this **
 |-------------------|--------------|
 | **Subagents** | Claude Code can spawn multiple sub-agents in parallel to handle complex tasks — just describe a multi-part task and it will dispatch agents automatically |
 | **Agent Teams** | Orchestrate multiple Claude Code sessions that coordinate and run work in parallel; enables delegate mode, task assignment/claiming, and team communication for large-scale projects |
+| **MCP Servers** | Connect external tools (e.g. Codex CLI) via Model Context Protocol for multi-agent code review and discussion |
+| `/loop [interval] <prompt>` | Run a task repeatedly on a set interval (default 10m) — great for overnight autonomous monitoring and iteration |
 | `/context` | View the current conversation context (what files and info Claude is working with) |
 | `/cost` | Check your usage and token spend for the current session |
 | `/help` | Show all available slash commands |
@@ -165,11 +167,93 @@ Agent Teams can be enabled through experimental settings. The orchestrator manag
 
 Each agent reports back to the orchestrator, which coordinates the overall build.
 
+### Codex MCP: Code Review & Multi-Agent Discussion
+
+Claude Code supports **MCP (Model Context Protocol)** servers, meaning you can connect external tools — including OpenAI's **Codex CLI** — directly into your Claude Code session. This enables a powerful workflow: **use Claude Code as the orchestrator, and call Codex as a second opinion for code review and discussion**.
+
+**Setup:** Add the Codex MCP server to your Claude Code configuration (in `~/.claude/settings.json` or project-level `.claude/settings.json`):
+
+```json
+{
+  "mcpServers": {
+    "codex-cli": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/codex-mcp"]
+    }
+  }
+}
+```
+
+> Replace the command/args with your actual Codex MCP server setup. The key is that once registered, Codex tools become available inside Claude Code.
+
+**How it works in practice:**
+
+1. **Code review**: Ask Claude Code to call the Codex MCP tool to review a file or diff. You get **two different models' perspectives** on the same code — Claude spots architectural issues while Codex may catch different edge cases.
+
+2. **Multi-agent discussion**: You can explicitly prompt Claude Code to:
+   - First generate its own review/opinion
+   - Then call Codex MCP for a second opinion
+   - Finally synthesize both perspectives into actionable feedback
+
+**Example prompt:**
+
+```
+Review the changes in src/model.py. First give me your analysis, then call codex
+to review the same diff. Summarize where you agree and disagree.
+```
+
+This turns Claude Code into a **multi-agent code review system** — two frontier models debating your code quality, catching bugs the other might miss, and giving you a consolidated report.
+
+### Loop Command: Overnight Autonomous Work
+
+The `/loop` command lets Claude Code **run a task repeatedly on a set interval** — turning it into a long-running autonomous agent that can monitor, fix, and iterate without human supervision.
+
+**Syntax:**
+
+```
+/loop [interval] <prompt>
+```
+
+- Intervals: `Ns`, `Nm`, `Nh`, `Nd` (e.g. `5m`, `30m`, `2h`). Minimum granularity is 1 minute.
+- If no interval is specified, defaults to `10m`.
+
+**Use case: Overnight experiment monitoring**
+
+When you have long-running experiments (e.g., model training, benchmark suites), you can set up a loop before going to sleep and let Claude Code babysit the entire process:
+
+```
+/loop 10m Check the training run status. If it crashed or errored, diagnose the issue,
+fix the config or code, and restart the experiment. If it finished successfully,
+log the results and start the next experiment in the queue. Keep going until all
+experiments are done.
+```
+
+**Use case: Open-ended research tasks**
+
+For exploratory tasks where Claude needs to try multiple approaches:
+
+```
+/loop 15m Check the hyperparameter sweep progress. Evaluate results so far using
+validation loss < 0.35 as the success criterion. If a run looks promising, allocate
+more resources to it. If all runs are stuck, try a different learning rate schedule.
+Stop when validation loss < 0.35 is achieved or all 20 configurations have been tried.
+```
+
+**Key pattern:** Tell Claude Code:
+- **What to monitor** — experiment status, logs, GPU utilization
+- **How to evaluate** — success/failure criteria, metrics thresholds
+- **How to recover** — fix errors, adjust configs, restart
+- **When to stop** — completion conditions, termination criteria
+
+**Why this is cost-effective:** Claude Code has **prompt caching** — when the conversation context is largely unchanged between loop iterations, most of the input tokens hit the cache (90%+ cache hit rate is typical). Cached tokens cost **~10% of regular input tokens**, making long-running loops surprisingly cheap. An overnight loop that runs every 10 minutes for 8 hours might cost only a few dollars in API fees, while saving you an entire night of manual babysitting.
+
 ## Pros
 
 - **Most capable agent** — Top-tier reasoning and code edits
 - **Flexible API options** — Official sub or third-party relay
 - **Good cost-performance** — Third-party relay can be very economical
+- **Autonomous loop** — Can run unattended overnight with `/loop`
+- **MCP extensibility** — Connect external tools (Codex, etc.) for multi-agent workflows
 
 ## Cons
 
@@ -305,6 +389,8 @@ export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"
 |-------------|------|
 | **Subagents** | Claude Code 可以并行派生多个子智能体处理复杂任务 — 描述一个多步任务，它会自动分配 agent |
 | **Agent Teams** | 编排多个 Claude Code 会话协同工作并行运行；支持委托模式、任务分配/认领和团队沟通，用于大型项目 |
+| **MCP Servers** | 通过 Model Context Protocol 接入外部工具（如 Codex CLI），实现多智能体代码审查与讨论 |
+| `/loop [间隔] <提示词>` | 按设定间隔重复执行任务（默认 10 分钟）— 适合通宵自主监控和迭代 |
 | `/context` | 查看当前对话上下文（Claude 正在处理哪些文件和信息） |
 | `/cost` | 查看当前会话的用量与 Token 消耗 |
 | `/help` | 查看所有可用斜杠命令 |
@@ -338,11 +424,91 @@ export ANTHROPIC_AUTH_TOKEN="YOUR_TOKEN_HERE"
 
 每个智能体向编排器报告，由编排器协调整体构建。
 
+### Codex MCP：代码审查与多智能体讨论
+
+Claude Code 支持 **MCP（Model Context Protocol）** 服务器，可以将外部工具（包括 OpenAI 的 **Codex CLI**）直接接入 Claude Code 会话。这解锁了一个强大的工作流：**用 Claude Code 做主控，调用 Codex 作为第二视角进行代码审查与讨论**。
+
+**配置方式：** 在 `~/.claude/settings.json` 或项目级 `.claude/settings.json` 中添加 Codex MCP 服务器：
+
+```json
+{
+  "mcpServers": {
+    "codex-cli": {
+      "command": "npx",
+      "args": ["-y", "@anthropic-ai/codex-mcp"]
+    }
+  }
+}
+```
+
+> 将 command/args 替换为你实际的 Codex MCP 服务器配置。注册后，Codex 工具会在 Claude Code 内可用。
+
+**实际使用方式：**
+
+1. **代码审查**：让 Claude Code 调用 Codex MCP 工具审查某个文件或 diff。你可以同时获得 **两个不同模型的视角** — Claude 擅长发现架构问题，Codex 可能捕捉到不同的边界情况。
+
+2. **多智能体讨论**：你可以明确提示 Claude Code：
+   - 先生成自己的审查意见
+   - 然后调用 Codex MCP 获取第二意见
+   - 最后综合两方观点给出可执行的反馈
+
+**示例 Prompt：**
+
+```
+审查 src/model.py 的改动。先给出你的分析，然后调用 codex 审查同一个 diff。
+总结你们一致和分歧的地方。
+```
+
+这让 Claude Code 变成了一个 **多智能体代码审查系统** — 两个顶级模型对你的代码质量进行辩论，互相捕捉对方可能遗漏的 bug，最终给出综合报告。
+
+### Loop 命令：让 Claude Code 通宵干活
+
+`/loop` 命令让 Claude Code **按设定间隔重复执行任务** — 把它变成一个长时间运行的自主智能体，可以在无人值守的情况下持续监控、修复和迭代。
+
+**语法：**
+
+```
+/loop [间隔] <提示词>
+```
+
+- 间隔格式：`Ns`、`Nm`、`Nh`、`Nd`（如 `5m`、`30m`、`2h`）。最小粒度 1 分钟。
+- 不指定间隔则默认 `10m`。
+
+**场景一：通宵监控实验**
+
+当你有长时间运行的实验（如模型训练、benchmark 套件）时，睡前设置一个 loop，让 Claude Code 全程看管：
+
+```
+/loop 10m 检查训练运行状态。如果崩溃或报错了，诊断问题，修复配置或代码，
+然后重启实验。如果成功完成了，记录结果并启动队列中的下一个实验。
+一直跑到所有实验全部完成为止。
+```
+
+**场景二：开放性探索任务**
+
+对于需要 Claude 自主尝试多种方案的探索性任务，同样适用：
+
+```
+/loop 15m 检查超参搜索进度。用 validation loss < 0.35 作为成功标准评估当前结果。
+如果某个 run 看起来有希望就给它分配更多资源。如果所有 run 都卡住了就换一个
+learning rate schedule。当 validation loss < 0.35 达成或 20 个配置全部试完时停止。
+```
+
+**关键模式：** 告诉 Claude Code 四件事：
+- **监控什么** — 实验状态、日志、GPU 利用率
+- **如何评估** — 成功/失败标准、指标阈值
+- **如何恢复** — 修错、调参、重启
+- **何时终止** — 完成条件、停止标准
+
+**为什么成本很低：** Claude Code 有 **prompt caching（提示缓存）** 机制 — loop 每次迭代时，对话上下文大部分没有变化，绝大多数 input tokens 会命中缓存（通常 90%+ 的缓存命中率）。缓存 token 的价格只有正常 input token 的 **约 10%**，这使得长时间 loop 的成本出奇地低。一个每 10 分钟跑一次、跑一整晚（8 小时）的 loop，API 费用可能只需要几美元，却省下了你一整晚的人工盯守。
+
 ## 优点
 
 - **智能体能力顶尖** — 推理与代码修改都很强
 - **API 方式灵活** — 官方订阅或第三方中转均可
 - **性价比好** — 第三方中转通常更省钱
+- **自主循环** — 通过 `/loop` 可以通宵无人值守运行
+- **MCP 可扩展** — 接入外部工具（如 Codex）实现多智能体工作流
 
 ## 缺点
 
